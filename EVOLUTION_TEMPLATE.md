@@ -80,12 +80,26 @@ _(Synthesize 3-5 key findings across all topics read)_
 
 ## 跨领域连接发现
 
-> 跨 Topic 的潜在连接。此部分将在 Phase 3 (CONNECTION_INDEX) 实现后增强。
+> 跨 Topic 的潜在连接。来源：`00_Index/CONNECTION_INDEX.md`
 
-*Phase 3 pending: CONNECTION_INDEX implementation.*
+### 本期新增连接
 
-初步观察：
-- [Any obvious cross-category patterns noticed during compilation]
+_[Read CONNECTION_INDEX.md entries with 发现日期 in this month. List each connection. If none, write "本月未发现新的跨领域连接。"]_
+
+- **[[Topic A]] ↔ [[Topic B]]** (迁移): 这意味着你可以用 [X] 来替代/增强 [你体系中的 Y]
+- **[[Topic C]] ↔ [[Topic D]]** (混搭): 将 [A] 和 [你已有的 B] 结合，可以产生 [C]
+
+### 跨领域洞察
+
+_[Synthesize 1-3 cross-domain insights from this month's connections. What patterns emerge? What actions should be taken?]_
+
+### 累计连接统计
+
+| 连接类型 | 本月新增 | 累计总数 |
+|----------|---------|--------|
+| 迁移 | N | N |
+| 混搭 | N | N |
+| 反转 | N | N |
 
 ---
 
@@ -166,12 +180,26 @@ _(5-8 key findings, prioritizing cross-month patterns)_
 
 ## 跨领域连接发现
 
-> 跨 Topic 的潜在连接。
+> 跨 Topic 的潜在连接。来源：`00_Index/CONNECTION_INDEX.md`
 
-*Phase 3 pending: CONNECTION_INDEX implementation.*
+### 本季度新增连接
 
-初步观察：
-- [Cross-category patterns noticed across the quarter]
+_[Read CONNECTION_INDEX.md entries with 发现日期 in this quarter. Group by month. If none, write "本季度未发现新的跨领域连接。"]_
+
+#### YYYY-MM
+- **[[Topic A]] ↔ [[Topic B]]** (迁移): 这意味着你可以用 [X] 来替代/增强 [你体系中的 Y]
+
+### 跨领域洞察
+
+_[Synthesize 2-4 cross-domain insights from the quarter's connections. Identify patterns across months.]_
+
+### 累计连接统计
+
+| 连接类型 | 本季新增 | 累计总数 |
+|----------|---------|--------|
+| 迁移 | N | N |
+| 混搭 | N | N |
+| 反转 | N | N |
 
 ---
 
@@ -258,12 +286,26 @@ _(8-12 key findings for the full year)_
 
 ## 跨领域连接发现
 
-> 跨 Topic 的潜在连接。
+> 跨 Topic 的潜在连接。来源：`00_Index/CONNECTION_INDEX.md`
 
-*Phase 3 pending: CONNECTION_INDEX implementation.*
+### 年度连接概览
 
-年度观察：
-- [Major cross-category patterns noticed over the year]
+_[Read all CONNECTION_INDEX.md entries with 发现日期 in this year. Group by quarter.]_
+
+#### Q1
+- **[[Topic A]] ↔ [[Topic B]]** (迁移): 这意味着你可以用 [X] 来替代/增强 [你体系中的 Y]
+
+### 年度跨领域洞察
+
+_[Synthesize 3-5 major cross-domain insights from the year. What are the most impactful connections? How did they change thinking or practice?]_
+
+### 累计连接统计
+
+| 连接类型 | 本年新增 | 累计总数 |
+|----------|---------|--------|
+| 迁移 | N | N |
+| 混搭 | N | N |
+| 反转 | N | N |
 
 ---
 
@@ -288,6 +330,7 @@ _(8-12 key findings for the full year)_
 - **Monthly**: Read TIMELINE_INDEX (target month) + TOPIC_INDEX + Topic Notes listed as New/Updated.
 - **Quarterly**: Read 3 monthly TIMELINE_INDEX sections + TOPIC_INDEX. Prefer reading monthly evolution summaries if they exist.
 - **Annual**: Read quarterly summaries if they exist. Otherwise read monthly TIMELINE_INDEX sections + TOPIC_INDEX. Only read full Topic Notes for the most impactful topics (not all).
+- **CONNECTION_INDEX**: Read `00_Index/CONNECTION_INDEX.md` and filter entries by `发现日期` within the target period. Do NOT re-run inspire analysis — use existing connections only.
 
 ### Content Quality Guidelines
 

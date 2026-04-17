@@ -305,6 +305,111 @@ Tell the user:
 
 ---
 
+## Workflow 4: Inspire Analysis
+
+### Trigger Conditions
+
+This workflow activates when the user explicitly requests an inspire analysis or cross-domain connection discovery. Recognizable patterns:
+- "find connections" / "discover connections" / "inspire analysis"
+- "启发分析" / "跨领域连接" / "发现连接"
+- "run inspire" / "inspire me"
+
+### Overview
+
+The Inspire Analysis discovers cross-domain connections between Topic Notes and generates actionable insights. It uses a 3-step pipeline optimized for token efficiency:
+
+```
+TOPIC_INDEX metadata
+       ↓
+Step 1: Rule pre-filter (0 tokens)
+       ↓  (skip same-category, skip high tag overlap)
+Candidate pairs (3-5)
+       ↓
+Step 2: Read structured summaries (~100 tokens each)
+       ↓
+Step 3: LLM semantic analysis (< 1,000 tokens input)
+       ↓
+Insights (迁移/混搭/反转)
+       ↓
+Update CONNECTION_INDEX.md
+```
+
+### Step 1: Rule Pre-Filter
+
+Read `00_Index/TOPIC_INDEX.md` and extract the metadata table. Using **only** the table data (do NOT read full Topic Note files):
+
+1. **Collect all topics**: Extract title, category, tags for every row in TOPIC_INDEX.
+2. **Generate all possible pairs**: For every combination of two topics (A, B) where A ≠ B.
+3. **Apply pre-filter rules** (per SCHEMA.md Section 9.1):
+   - **Skip same-category**: If `Category(A) == Category(B)`, discard this pair.
+   - **Skip high tag overlap**: Compute `intersection(tags_A, tags_B).length / min(tags_A.length, tags_B.length)`. If ≥ 0.6, discard this pair.
+   - **Skip already connected**: If `[A] ↔ [B]` or `[B] ↔ [A]` already exists in `00_Index/CONNECTION_INDEX.md`, discard this pair.
+   - **Skip topics with 0 tags**: If either topic has an empty tags field, discard.
+4. **Sort remaining pairs** by tag overlap ascending (lower overlap first = more cross-domain potential).
+5. **Select top 3-5 pairs** (default 5, max 5) for analysis.
+
+**If fewer than 3 pairs remain**, proceed with however many are available (even 1).
+**If 0 pairs remain**, report to the user: "No suitable cross-domain candidate pairs found. Consider adding more topics or reducing tag overlap threshold."
+
+### Step 2: Read Structured Summaries
+
+For each selected candidate pair, read the **`summary` frontmatter block** from both Topic Note files:
+
+```
+00_Index/TOPIC_INDEX.md → identify Topic Note paths
+02_Topic_Notes/[Category]/[Topic Note file] → read only the summary block
+```
+
+Read **only** the `summary` field from the frontmatter (core_idea, key_mechanism, applicable_to, unique_insight). Do NOT read the full body of the Topic Note. This keeps each topic at ~100 tokens.
+
+If a Topic Note file referenced in TOPIC_INDEX cannot be found, skip that pair and move to the next candidate.
+
+### Step 3: LLM Semantic Analysis
+
+For each candidate pair, analyze the two structured summaries and attempt to generate actionable insights in three perspectives:
+
+| 视角 | 问题 | 输出句式 |
+|------|------|----------|
+| 迁移 (Transfer) | 某机制能否移植升级你的体系？ | "这意味着你可以用 [X] 来替代/增强 [你体系中的 Y]" |
+| 混搭 (Mix) | 某组件和你已有的东西组合能产生什么？ | "将 [A] 和 [你已有的 B] 结合，可以产生 [C]" |
+| 反转 (Reverse) | 某做法和你的默认假设相反吗？ | "这提醒你：你可能需要停下 [X]，开始做 [Y]" |
+
+**Rules for insight generation** (per SCHEMA.md Section 9.4):
+- Each insight must reference **concrete** mechanisms, tools, or concepts from both topics.
+- Each insight must be **actionable** — "能用"，不是"能想"。"You can use X to do Y" not "X and Y are related".
+- Not every perspective will yield a valid insight. **Skip forced insights** — if no genuine actionable connection exists, do NOT fabricate one.
+- At most **one insight per perspective per pair**.
+
+### Step 4: Update CONNECTION_INDEX
+
+For each discovered connection (each insight that passed the quality check):
+
+1. **Read** `00_Index/CONNECTION_INDEX.md` (create if it doesn't exist, using the template from SCHEMA.md Section 8).
+2. **Check for duplicates**: Verify `[Topic A] ↔ [Topic B]` or `[Topic B] ↔ [Topic A]` does not already exist.
+3. **Append** the new connection entry at the end of the file:
+   ```markdown
+   ## [[Topic A]] ↔ [[Topic B]]
+   - **连接类型**: [迁移|混搭|反转]
+   - **启发**: [exact insight following the sentence pattern]
+   - **发现日期**: YYYY-MM-DD
+   ```
+4. **Update** the `Last updated: YYYY-MM-DD` in the blockquote to today's date.
+
+### Step 5: Report Completion
+
+Tell the user:
+- Number of candidate pairs analyzed.
+- Number of connections discovered (broken down by type: 迁移, 混搭, 反转).
+- A brief summary of the most impactful insight.
+- Confirmation that CONNECTION_INDEX was updated.
+
+If no connections were discovered, explain why and suggest:
+- Adding more topics across different categories.
+- Reducing the tag overlap threshold.
+- Checking if topics have sufficient tag metadata.
+
+---
+
 ## Edge Cases
 
 ### Empty Input
@@ -371,4 +476,18 @@ Input: "generate monthly summary" or "compile evolution for 2026-04"
     Read TIMELINE_INDEX + TOPIC_INDEX + select Topic Notes
          ↓
     03_Content_Output/Longform/Evolution_YYYY-MM.md
+
+Input: "inspire analysis" / "find connections" / "启发分析"
+         ↓
+    Inspire Analysis (Workflow 4)
+         ↓
+    Read TOPIC_INDEX → Rule pre-filter (0 tokens)
+         ↓
+    Select 3-5 candidate pairs (cross-category, low tag overlap)
+         ↓
+    Read structured summaries (~100 tokens each)
+         ↓
+    LLM analyze: 迁移/混搭/反转 (< 1,000 tokens)
+         ↓
+    Update 00_Index/CONNECTION_INDEX.md
 ```
