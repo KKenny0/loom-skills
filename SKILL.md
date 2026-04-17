@@ -194,7 +194,26 @@ After writing the Topic Note, update `00_Index/TOPIC_INDEX.md`:
 
 Use the format from SCHEMA.md TOPIC_INDEX Template verbatim.
 
-### Step 9: Report Completion
+### Step 9: Update TIMELINE_INDEX
+
+After updating TOPIC_INDEX, update `00_Index/TIMELINE_INDEX.md`:
+
+1. **Read** the existing TIMELINE_INDEX.md (create if it doesn't exist, using the template from SCHEMA.md Section 6).
+2. **Determine** whether this is a New Topic or Updated Topic:
+   - Search TIMELINE_INDEX for any prior month's entry with the same title.
+   - If found in a prior month → **Updated Topic**.
+   - If not found anywhere → **New Topic**.
+3. **Check idempotency**: If an entry for this topic already exists in the current month's section (same title, same section), **skip** — do not duplicate.
+4. **Add entry**: Under the current month's `## YYYY-MM` header, add to the appropriate section:
+   - New Topic → `### New Topics`
+   - Updated Topic → `### Updated Topics`
+   - Format: `- [[Title]] (YYYY-MM-DD) - Category`
+5. **Create month header** if `## YYYY-MM` for the current month does not exist. Insert in chronological order (newest first, before older months).
+6. **Update** the `Last updated: YYYY-MM-DD` in the blockquote to today's date.
+
+Use the format from SCHEMA.md TIMELINE_INDEX Template verbatim.
+
+### Step 10: Report Completion
 
 Tell the user:
 - The file path of the created/updated Topic Note.
@@ -202,6 +221,87 @@ Tell the user:
 - Whether it was a new note or an update.
 - The number of source notes compiled.
 - Confirmation that TOPIC_INDEX was updated.
+- Confirmation that TIMELINE_INDEX was updated.
+
+---
+
+### Status Transitions and TIMELINE_INDEX
+
+When a Daily Note changes status (inbox → working → published → archived):
+1. Check if the Daily Note's filename appears in any Topic Note's `compiled_from` field.
+2. If yes, and the status changes to `archived`, add the Topic Note to the current month's `### Archived` section in TIMELINE_INDEX.
+3. Status transitions other than `archived` do not trigger TIMELINE_INDEX updates.
+
+---
+
+## Workflow 3: Evolution Summary
+
+### Trigger Conditions
+
+This workflow activates when the user explicitly requests an evolution summary. Recognizable patterns:
+- "generate monthly summary" / "generate evolution for YYYY-MM"
+- "quarterly summary" / "evolution for YYYY-QN"
+- "annual summary" / "yearly evolution for YYYY"
+- "知识演进" / "演进总结"
+
+### Step 1: Determine the Summary Period
+
+Parse the user's request to determine:
+- **Period type**: Monthly, Quarterly, or Annual.
+- **Period value**: e.g., `2026-04`, `2026-Q2`, `2026`.
+
+If the user doesn't specify a period, default to **monthly for the current month**.
+
+### Step 2: Read TIMELINE_INDEX
+
+Read `00_Index/TIMELINE_INDEX.md` and extract entries for the target period:
+- **Monthly**: Read the `## YYYY-MM` section.
+- **Quarterly**: Read the three `## YYYY-MM` sections for the quarter.
+- **Annual**: Read all `## YYYY-MM` sections for the year.
+
+Collect all New Topics, Updated Topics, and Archived entries.
+
+### Step 3: Read TOPIC_INDEX
+
+Read `00_Index/TOPIC_INDEX.md` for metadata (Core Idea, Tags) of the topics found in Step 2.
+
+### Step 4: Read Selected Topic Notes
+
+For token efficiency, only read full Topic Notes that are:
+- Listed as **New Topics** in the target period.
+- Listed as **Updated Topics** in the target period.
+
+**Skip** reading Topic Notes that are only listed as **Archived**.
+
+For **quarterly and annual** summaries: check if monthly evolution summaries already exist in `03_Content_Output/Longform/`. If they do, read those instead of re-reading individual Topic Notes.
+
+### Step 5: Generate the Evolution Summary
+
+Use the EVOLUTION_TEMPLATE.md template to generate the summary. Fill in each section:
+
+1. **本期新增主题** — Summarize new topics added in the period.
+2. **本期关键发现** — Highlight the most impactful insights across all topics.
+3. **知识演进趋势** — Identify trends: what areas are growing, what themes emerge.
+4. **跨领域连接发现** — Placeholder for Phase 3 (note as "pending CONNECTION_INDEX implementation").
+
+### Step 6: Write the Evolution Summary
+
+Write to:
+```
+03_Content_Output/Longform/Evolution_YYYY-MM.md      (monthly)
+03_Content_Output/Longform/Evolution_YYYY-QN.md      (quarterly)
+03_Content_Output/Longform/Evolution_YYYY.md          (annual)
+```
+
+Use the template from EVOLUTION_TEMPLATE.md verbatim.
+
+### Step 7: Report Completion
+
+Tell the user:
+- The file path of the generated evolution summary.
+- The period covered.
+- Number of new topics, updated topics, and archived topics.
+- Key trends identified.
 
 ---
 
@@ -227,6 +327,9 @@ If the source content is garbled, incomplete, or appears to be an error page:
 
 ### TOPIC_INDEX Does Not Exist
 If `00_Index/TOPIC_INDEX.md` does not exist, create it with the header and table header from the template, then add the first entry.
+
+### TIMELINE_INDEX Does Not Exist
+If `00_Index/TIMELINE_INDEX.md` does not exist, create it with the header from the TIMELINE_INDEX template in SCHEMA.md Section 6, then add the current month's section and entry.
 
 ### Vault Directory Does Not Exist
 If any required directory (`01_Daily_Notes/YYYY/inbox/`, `02_Topic_Notes/[Category]/`, `00_Index/`) does not exist, create it before writing.
@@ -258,4 +361,14 @@ Input: "compile topic [X]" or "create topic note from [sources]"
     02_Topic_Notes/[Category]/YYYY-MM-DD_Title.md
          ↓
     Update 00_Index/TOPIC_INDEX.md
+         ↓
+    Update 00_Index/TIMELINE_INDEX.md
+
+Input: "generate monthly summary" or "compile evolution for 2026-04"
+         ↓
+    Evolution Summary (Workflow 3)
+         ↓
+    Read TIMELINE_INDEX + TOPIC_INDEX + select Topic Notes
+         ↓
+    03_Content_Output/Longform/Evolution_YYYY-MM.md
 ```

@@ -232,3 +232,80 @@ URL sources are recorded in Daily Note frontmatter (`source_url`). Do not create
 ### 5.5 No Obsidian-Specific Features
 
 Wiki-links (`[[Topic Name]]`) are used in TOPIC_INDEX and Topic Note `related_topics` for human readability in editors that support them. They are **not** Obsidian-specific features — they are simple text markers that any editor can read. Do not use Obsidian-specific features like Dataview queries, callouts, or embedded queries.
+
+---
+
+## 6. TIMELINE_INDEX.md Template
+
+The TIMELINE_INDEX tracks when topics are created, updated, and archived over time. It lives at `00_Index/TIMELINE_INDEX.md`.
+
+```markdown
+# Timeline Index
+
+> Auto-generated. Last updated: YYYY-MM-DD
+
+## 2026-04
+### New Topics
+- [[Topic 1]] (2026-04-10) - OpenClaw
+- [[Topic 2]] (2026-04-09) - Claude_Code
+
+### Updated Topics
+- [[Topic 3]] (2026-04-08) - AI_Agent
+
+### Archived
+- [[Topic 4]] (2026-04-05) - Video_Generation
+```
+
+### Field Specifications
+
+| Element | Required | Description |
+|---------|----------|-------------|
+| Month header (`## YYYY-MM`) | ✅ | One per month that has activity |
+| `### New Topics` | ✅ | Topics first compiled this month |
+| `### Updated Topics` | ✅ | Existing topics re-compiled with new sources this month |
+| `### Archived` | ✅ | Topics moved to archived status this month |
+| Entry format | ✅ | `- [[Title]] (YYYY-MM-DD) - Category` |
+
+### Update Rules
+
+1. **Idempotent**: A topic must appear at most **once per section per month**. If the same topic is compiled multiple times in the same month:
+   - First compile → add to `### New Topics`
+   - Subsequent compiles in the same month → **do not duplicate** (skip silently)
+   - If the topic already existed in a prior month → add to `### Updated Topics` instead of `### New Topics`
+2. **New vs Updated**: Check TOPIC_INDEX or TIMELINE_INDEX history. If the topic title exists in a prior month's entries, it is an **Updated** topic. If it is brand new (never appeared before), it is a **New** topic.
+3. **Match by title**: Use exact string match on the `title` field.
+4. **Category**: Use the Topic Note's `category` field.
+5. **Date**: Use the Topic Note's `date` field (compilation date).
+6. **Month header**: Create a new `## YYYY-MM` header if one does not already exist for the current month. Months are ordered chronologically (newest first).
+7. **Archived**: When a Daily Note's status changes to `archived` and that Daily Note is referenced by a Topic Note's `compiled_from`, add the Topic Note to the `### Archived` section for that month.
+8. **Last updated**: Update the `YYYY-MM-DD` in the blockquote to today's date.
+9. **Entry order within a section**: Chronological by date, newest first.
+10. **Empty sections**: Keep section headers even if empty (they signal the structure is maintained).
+
+### What NOT to include
+
+- Do not include Daily Notes in TIMELINE_INDEX — only Topic Notes.
+- Do not include reasons or summaries — use the wiki-link format for quick reference.
+
+---
+
+## 7. Evolution Summary Output Format
+
+The evolution summary is generated on demand (user-triggered) and written to `03_Content_Output/Longform/`. The format is defined in `EVOLUTION_TEMPLATE.md`.
+
+### Summary Types
+
+| Type | Period | Filename Pattern |
+|------|--------|------------------|
+| Monthly | Single month | `Evolution_YYYY-MM.md` |
+| Quarterly | 3 months | `Evolution_YYYY-QN.md` |
+| Annual | Full year | `Evolution_YYYY.md` |
+
+### Source Selection Strategy
+
+To keep token usage efficient:
+1. Read TIMELINE_INDEX for the target period.
+2. Read TOPIC_INDEX for topic metadata.
+3. Only read full Topic Notes that are listed as **New Topics** or **Updated Topics** in the target period.
+4. Skip reading Topic Notes that are only listed as **Archived** (use TIMELINE_INDEX entry only).
+5. For quarterly/annual summaries, read monthly evolution summaries if they exist (instead of re-reading all Topic Notes).
