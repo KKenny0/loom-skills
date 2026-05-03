@@ -1,0 +1,4 @@
+interface:
+  display_name: "Loom"
+  short_description: "Route Loom workflow requests"
+  default_prompt: "Use $loom to route this request to the right Loom stage."

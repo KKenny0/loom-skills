@@ -1,0 +1,4 @@
+interface:
+  display_name: "Loom Validate"
+  short_description: "Validate Loom vault structure"
+  default_prompt: "Use $loom-validate to check my Loom vault without changing files."

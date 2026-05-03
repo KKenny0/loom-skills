@@ -1,0 +1,4 @@
+interface:
+  display_name: "Loom Capture"
+  short_description: "Capture raw sources into inbox"
+  default_prompt: "Use $loom-capture to save this source and create an inbox note."

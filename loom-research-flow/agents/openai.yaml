@@ -1,0 +1,4 @@
+interface:
+  display_name: "Loom Research Flow"
+  short_description: "Run source-to-synthesis research"
+  default_prompt: "Use $loom-research-flow to process these sources into a Synthesis Pack."

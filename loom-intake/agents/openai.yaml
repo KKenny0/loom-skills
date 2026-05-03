@@ -1,0 +1,4 @@
+interface:
+  display_name: "Loom Intake"
+  short_description: "Create AI research material ledgers"
+  default_prompt: "Use $loom-intake to classify my sources and create a Material List."

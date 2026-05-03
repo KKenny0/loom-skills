@@ -1,0 +1,4 @@
+interface:
+  display_name: "Loom Migrate"
+  short_description: "Scan and migrate legacy vaults"
+  default_prompt: "Use $loom-migrate to scan my legacy Loom vault and report migration issues."
