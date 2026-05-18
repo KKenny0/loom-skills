@@ -1,6 +1,6 @@
 ---
 name: loom-write
-description: Write drafts and articles from research, create Topic Notes, and update vault indexes. Use when the user asks to write an article, draft from a synthesis pack, create a topic note, or update indexes.
+description: Write drafts and articles from research, create Topic Notes, and finalize publication output. Use when the user asks to write an article, draft from a synthesis pack or notes, create or update a topic note, or turn research into publishable prose.
 ---
 
 # Loom Write

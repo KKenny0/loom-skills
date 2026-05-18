@@ -62,6 +62,11 @@ Discover and compile structured connections between Topic Notes.
 
 ### Connection flow
 
+**Incremental mode (default when new Topics exist):**
+- Compare only new/updated Topic Notes against existing Topics.
+- Skip pairs already present in CONNECTION_INDEX.
+- Full scan only when explicitly requested or when no CONNECTION_INDEX exists.
+
 **Multi-perspective contrast:**
 - Bring different topic perspectives into dialogue.
 - Identify where topics support, contradict, or extend each other.
@@ -81,6 +86,7 @@ Discover and compile structured connections between Topic Notes.
 - Every insight must be concrete and actionable.
 - Do not duplicate existing topic pairs in either direction.
 - Newest connections first.
+- Connect discovers structural links between finalized Topic Notes. It is not a re-analysis of sources — analytical synthesis of raw Source Briefs belongs in loom-research's Synthesis Pack, not here.
 
 ## Evolve
 

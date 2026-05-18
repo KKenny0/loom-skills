@@ -1,6 +1,6 @@
 ---
 name: loom
-description: Route Loom requests and create Material Lists. Use when the user provides URLs, files, pasted text, topic keywords, or mixed source material and needs to start a Loom workflow, or when unsure which loom-* skill applies.
+description: Route ambiguous or multi-step Loom requests and create Material Lists. Use when the user provides mixed source material and needs help starting, when the request spans research and writing, or when unsure which loom-* skill applies. For clear single-intent requests, the sub-skills (loom-research, loom-write, loom-maintain) handle intake directly.
 ---
 
 # Loom Router + Intake

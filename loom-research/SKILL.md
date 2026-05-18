@@ -1,6 +1,6 @@
 ---
 name: loom-research
-description: Capture, read, and synthesize source material into a Synthesis Pack. Use when the user asks to research a topic, process materials, read sources, or build a research package from URLs, PDFs, files, pasted text, or topic keywords.
+description: Capture, read, and synthesize source material into a Synthesis Pack. Use when the user asks to research a topic, deep-dive into a concept, analyze or process materials, read sources, or build a research package from URLs, PDFs, files, pasted text, or topic keywords.
 ---
 
 # Loom Research
