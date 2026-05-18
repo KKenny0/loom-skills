@@ -1,4 +1,0 @@
-interface:
-  display_name: "Loom Article Flow"
-  short_description: "Run source-to-article writing"
-  default_prompt: "Use $loom-article-flow to research these sources and write an article draft."

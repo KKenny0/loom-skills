@@ -1,0 +1,4 @@
+interface:
+  display_name: "Loom Research"
+  short_description: "Capture, read, and synthesize sources"
+  default_prompt: "Use $loom-research to process these sources into a Synthesis Pack."

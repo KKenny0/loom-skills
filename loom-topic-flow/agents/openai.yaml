@@ -1,4 +1,0 @@
-interface:
-  display_name: "Loom Topic Flow"
-  short_description: "Turn research into indexed topics"
-  default_prompt: "Use $loom-topic-flow to create a Topic Note and update indexes."

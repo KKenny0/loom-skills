@@ -1,0 +1,4 @@
+interface:
+  display_name: "Loom Maintain"
+  short_description: "Validate, migrate, connect, evolve, index"
+  default_prompt: "Use $loom-maintain to check and maintain the vault."

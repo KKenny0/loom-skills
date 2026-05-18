@@ -1,4 +1,0 @@
-interface:
-  display_name: "Loom Maintenance Flow"
-  short_description: "Run vault maintenance checks"
-  default_prompt: "Use $loom-maintenance-flow to validate, scan, and preview index updates."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Loom Write"
+  short_description: "Draft articles, create Topic Notes, update indexes"
+  default_prompt: "Use $loom-write to write from this research."

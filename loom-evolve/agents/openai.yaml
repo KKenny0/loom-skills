@@ -1,4 +1,0 @@
-interface:
-  display_name: "Loom Evolve"
-  short_description: "Generate knowledge evolution reports"
-  default_prompt: "Use $loom-evolve to generate this month’s Loom evolution summary."

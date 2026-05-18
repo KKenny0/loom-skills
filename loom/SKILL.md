@@ -1,45 +1,37 @@
 ---
 name: loom
-description: Route ambiguous Loom research, writing, vault maintenance, migration, and evolution requests to the appropriate Loom stage or flow skill. Use when the user asks broadly to run a Loom workflow, maintain a Loom vault, or is unsure which loom-* skill applies.
+description: Route Loom requests and create Material Lists. Use when the user provides URLs, files, pasted text, topic keywords, or mixed source material and needs to start a Loom workflow, or when unsure which loom-* skill applies.
 ---
 
-# Loom Router
+# Loom Router + Intake
 
-Use this fallback skill only for broad or ambiguous requests. Prefer a specific stage or flow skill whenever the user's intent is clear.
+Route ambiguous requests and create the Material List before any research begins.
+
+## Read First
+
+- `../shared/references/schemas.md`
 
 ## Routing
 
-- Source intake or material ledger: use `loom-intake`.
-- Save raw source material or create an inbox source entry: use `loom-capture`.
-- Deep-read one source: use `loom-read`.
-- Combine multiple sources into a research synthesis: use `loom-synthesis-pack`.
-- Write Draft or Final from a Synthesis Pack: use `loom-draft`.
-- Convert trusted research outputs into Topic Notes: use `loom-topic`.
-- Rebuild or repair indexes: use `loom-index`.
-- Maintain cross-topic connections: use `loom-connect`.
-- Generate evolution summaries: use `loom-evolve`.
-- Scan or migrate a legacy vault: use `loom-migrate`.
-- Validate a vault: use `loom-validate`.
-- Run end-to-end research: use `loom-research-flow`.
-- Run end-to-end article writing: use `loom-article-flow`.
-- Run topic/index handoff: use `loom-topic-flow`.
-- Run maintenance: use `loom-maintenance-flow`.
-- Run index/connect/evolution summary: use `loom-evolution-flow`.
+When the user's intent is clear, route directly:
 
-## Shared Resources
+- **Research materials** (URLs, PDFs, text → synthesis pack): use `loom-research`.
+- **Write or draft** (from synthesis or notes → article → topic → index): use `loom-write`.
+- **Vault maintenance** (validate, migrate, evolve, connect, index rebuild): use `loom-maintain`.
 
-Read shared references only after choosing a stage:
+When intent is ambiguous, ask one question: "Research, write, or maintain?"
 
-- `../shared/references/writing-pipeline.md`
-- `../shared/references/companion-skills.md`
-- `../shared/references/schema.md`
-- `../shared/references/vault-migration.md`
-- `../shared/references/evolution-template.md`
+## Intake
 
-Deterministic scripts live in `../shared/scripts/`.
+Before routing to `loom-research` or `loom-write`, create a Material List:
+
+1. Classify task type: single-source deep dive, multi-source synthesis, theme research, or draft rewrite.
+2. For each source, record: ID (S1, S2…), Title, Author, Date, Type, Source Tier, Relevance, Citation Usability, Risk Level, Raw Path, Capture Status.
+3. Every source row must include a `raw_path`. If no local capture exists, use the original URL/path or `pasted-local-text` and mark capture status as pending.
+4. Record source tier, relevance, citation usability, and risk level conservatively.
+5. Suggest next step: `loom-research` or `loom-write`.
 
 ## Rules
 
-- Treat `/Users/kennywu/Documents/knowledge-vaults/loom-vault` as read-only unless the user explicitly requests writes.
-- `baoyu-skills` and `ljg-skills` are required companion skill packs. If missing, tell the user the install commands from `../shared/references/companion-skills.md`.
+- Do not deep-read, synthesize, or draft in this stage.
 - Do not let Draft or Final wording overwrite Raw Capture, Daily Note, Source Brief, Synthesis Pack, or Topic Note content.

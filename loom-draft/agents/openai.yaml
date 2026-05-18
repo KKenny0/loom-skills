@@ -1,4 +1,0 @@
-interface:
-  display_name: "Loom Draft"
-  short_description: "Write articles from synthesis packs"
-  default_prompt: "Use $loom-draft to write a Draft and Final from this Synthesis Pack."

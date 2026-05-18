@@ -1,4 +1,0 @@
-interface:
-  display_name: "Loom Synthesis Pack"
-  short_description: "Combine sources into research packs"
-  default_prompt: "Use $loom-synthesis-pack to combine these briefs into a Synthesis Pack."

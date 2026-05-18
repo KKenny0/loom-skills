@@ -1,4 +1,0 @@
-interface:
-  display_name: "Loom Index"
-  short_description: "Maintain Loom index files"
-  default_prompt: "Use $loom-index to dry-run or rebuild my Loom indexes."

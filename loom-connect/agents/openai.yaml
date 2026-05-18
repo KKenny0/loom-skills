@@ -1,4 +1,0 @@
-interface:
-  display_name: "Loom Connect"
-  short_description: "Compile cross-topic connections"
-  default_prompt: "Use $loom-connect to update CONNECTION_INDEX with structured topic links."

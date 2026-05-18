@@ -1,4 +1,4 @@
 interface:
   display_name: "Loom"
-  short_description: "Route Loom workflow requests"
-  default_prompt: "Use $loom to route this request to the right Loom stage."
+  short_description: "Route requests and create Material Lists"
+  default_prompt: "Use $loom to classify and route this request, then create a Material List."

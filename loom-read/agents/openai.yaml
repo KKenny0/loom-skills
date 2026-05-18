@@ -1,4 +1,0 @@
-interface:
-  display_name: "Loom Read"
-  short_description: "Deep-read sources into briefs"
-  default_prompt: "Use $loom-read to deep-read this source and produce a Source Brief."

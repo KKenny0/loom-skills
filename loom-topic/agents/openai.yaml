@@ -1,4 +1,0 @@
-interface:
-  display_name: "Loom Topic"
-  short_description: "Create durable AI topic notes"
-  default_prompt: "Use $loom-topic to turn this reviewed research into a Topic Note."

@@ -1,4 +1,0 @@
-interface:
-  display_name: "Loom Evolution Flow"
-  short_description: "Run connect-to-evolve reports"
-  default_prompt: "Use $loom-evolution-flow to update connections and generate an evolution report."
