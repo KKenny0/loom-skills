@@ -92,6 +92,7 @@ Generator criteria: 独立性 (not derivable from others), 必要性 (removing b
 **Second pass — multi-perspective stress test:**
 - Moderator is truth-seeking (not balanced — seeks best-supported position).
 - Invite 3-5 perspectives (real traditions or named frameworks).
+- Each perspective must cite supporting evidence from Source Briefs. Perspectives without source backing are excluded.
 - Each perspective responds to evidence and to other perspectives.
 - Moderator synthesis: identify convergence, remaining disagreements, ASCII framework diagrams.
 
