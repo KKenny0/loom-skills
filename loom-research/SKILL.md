@@ -49,31 +49,16 @@ Preserve source material before analysis.
 
 Deep-read one source into a Source Brief.
 
-### Reading variants
+### Select reading variant
 
-Select variant based on source type:
+| Source Type | Variant | When |
+|-------------|---------|------|
+| Article / essay | 4-phase reading | Narrative prose with argument structure |
+| Academic paper | 9-step extraction | Peer-reviewed, methodology-heavy |
+| Concept / term | 8-dimension anatomy | Single concept needing full decomposition |
+| Any source needing depth | Vertical drilling | Follow a thread to its root |
 
-**Article/essay** — 4-phase reading:
-1. Global Map: one-paragraph summary; classify paragraphs as 骨 (structural), 肌 (substantive), 筋 (connective); draw ASCII structure map.
-2. Three-layer translation (for non-Chinese or dense text): 直译 → 意译 → 点睛.
-3. Annotation: mark claims, evidence, assumptions, gaps; generate Socratic collision questions.
-4. Pace: apply appropriate depth based on source importance (fast scan → medium read → slow deep-read).
-
-**Academic paper** — 9-step extraction:
-1. Problem framing: 亲历 (personal experience) → 旧路 (prior approaches) → 新口 (new angle).
-2. Method translation in plain language.
-3. Core concepts (minimum 3) with definitions.
-4. Key insight extraction.
-5. Advisor review: what would a domain expert question?
-6. Personal takeaways.
-7. Red line check: what must be true for the claims to hold.
-
-**Concept/term** — 8-dimension anatomy:
-History → Dialectics → Phenomenology → Linguistics → Formalization → Existentialism → Aesthetics → Meta-philosophy.
-Output: anchor → 8 cuts → introspection → compression (formula + one-liner + ASCII structure).
-
-**Any source needing depth** — vertical drilling:
-Drill layers: 表象 → 机理 → 原理 → 公理 (surface → mechanism → principle → axiom). Name each layer. Identify cracks where reasoning jumps. Stop at irreducible truth.
+Read the detailed methodology in `references/reading-variants.md` for the selected variant.
 
 ### Output
 
@@ -84,19 +69,8 @@ Drill layers: 表象 → 机理 → 原理 → 公理 (surface → mechanism →
 - Separate source claims, evidence, limits, disputes, quotable lines, and claims to verify.
 - Preserve source meaning and uncertainty.
 - One source per Source Brief. Do not merge across sources.
-
-### Quality check — 9 red lines
-
-Apply as final pass on each Source Brief:
-1. 口语测试: if you can't say it aloud naturally, rewrite.
-2. 零术语: no unexplained jargon.
-3. 短词优先: prefer short words.
-4. 一句一事: one idea per sentence.
-5. 具象优先: concrete over abstract.
-6. 理由先行: give reason before conclusion.
-7. 不说废话: no filler phrases.
-8. 信任读者: trust the reader's intelligence.
-9. 诚实: be honest about uncertainty.
+- Each Source Brief is quarantined: reference only its own source. No cross-references to other sources' claims, frameworks, or terminology. Cross-source analysis belongs in the Synthesis Pack, never in Source Briefs.
+- Apply 9 red lines quality check (in `references/reading-variants.md`) as final pass.
 
 ## Stage 3 — Synthesize
 
@@ -113,7 +87,7 @@ Combine Source Briefs into a Synthesis Pack.
 6. 反生成: verify remaining generators can re-generate the phenomena.
 7. 预测+变更双测: predict what would change if each generator were altered.
 
-Generator criteria: 独立性 (not derivable from others), 必要性 (removing breaks explanation), 生成力 (explains multiple phenomena), 简洁性 (no unnecessary complexity), 可证伪 (makes testable predictions).
+Generator criteria: 独立性 (not derivable from others), 必要性 (removing breaks explanation), 生成力 (explains multiple phenomena), 简洁性 (no unnecessary complexity), 可证伪 (makes testable predictions). Explicitly evaluate each surviving generator against all 5 criteria in the output — do not apply them implicitly.
 
 **Second pass — multi-perspective stress test:**
 - Moderator is truth-seeking (not balanced — seeks best-supported position).
