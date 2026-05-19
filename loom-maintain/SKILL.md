@@ -10,6 +10,7 @@ Vault governance: validate → migrate → connect → evolve → index.
 ## Read First
 
 - `../shared/references/schemas.md`
+- `<vault-root>/.loom/config.yaml` if it exists (vault configuration)
 
 ## Validate
 

@@ -12,13 +12,19 @@
 
 ## Why
 
-Loom is a Claude Code skill pack for personal knowledge vaults. It treats AI-assisted research as a staged pipeline rather than a one-shot chat: sources become threads, the workflow is the loom, and the vault is the fabric.
+Three months from now, you find a claim in your notes. Can you tell whether it came from a peer-reviewed paper, a blog post, or your own speculation?
 
-AI can summarize quickly and draft fluent prose. Without stages, schemas, and write boundaries, research drifts: sources blur into opinions, drafts overwrite evidence, indexes depend on memory, and older claims become hard to trace. The result: three months later, you find a claim in your notes and can't tell whether it came from a peer-reviewed paper, a blog post, or your own speculation.
+AI chat frontends are great for quick answers. But they're ephemeral — each conversation is an island. If you research across multiple sessions, your insights scatter across chat logs, and provenance fades. You end up with a pile of plausible-sounding text and no way to trace it.
 
-Loom keeps the work structured: inventory material, capture sources, read deeply, synthesize across sources, draft prose, consolidate Topic Notes, maintain indexes, discover cross-topic links, and report knowledge evolution.
+Loom is for building a durable, cumulative knowledge base. Every source is captured verbatim. Every claim traces back to its origin. Every synthesis is a separate artifact that drafts can read but never mutate. The vault compounds: your second research topic builds on the first, and over time you have something a chat log can't give you — a searchable, indexed, cross-referenced personal knowledge fabric.
 
 Loom weaves research into knowledge.
+
+## When NOT to use Loom
+
+Loom is the wrong tool for one-off quick lookups. If you just want to understand a single article or get a fast answer, use a chat frontend — it'll be faster and cheaper.
+
+Loom is the right tool when you're building knowledge that compounds. If you expect to revisit a topic, connect it to other topics, or write from it later, the structure pays for itself.
 
 ## Skills
 
@@ -34,7 +40,7 @@ Loom weaves research into knowledge.
 ## Quick look
 
 ```
-Input: three URLs on emergence theory
+Input: three articles on AI agent architecture
   → loom intake         → Material List (3 sources)
   → loom-research       → 3 Raw Captures + 3 Source Briefs + 1 Synthesis Pack
   → loom-write          → Draft article + 2 Topic Notes + Index update
@@ -45,21 +51,22 @@ Input: three URLs on emergence theory
 
 ```markdown
 ## Working Thesis
-Emergence is not a single phenomenon but a family of pattern-level
-behaviors that appear when simple components interact under constraints.
+Building an effective AI agent isn't about the framework — it's about
+designing the right boundary between model reasoning and tool execution.
 
 ## Conflicts
-- Source 1 (physicist): emergence requires irreducibility
-- Source 2 (complexity scientist): emergence is just computational
-  compression — no new physics needed
-- Source 3 (philosopher): both views collapse the phenomenological
-  experience of "something new"
+- Source 1 (Anthropic): keep agent architecture simple; augment LLM
+  capabilities with clear tool interfaces
+- Source 2 (OpenAI): delegate as much as possible to the platform
+  (handoffs, guardrails, tracing)
+- Source 3 (LangChain): compose agents as graphs with explicit state
+  management
 
 ## Evidence Weight
 | Claim | Sources | Weight |
 |-------|---------|--------|
-| Emergence is irreducible | S1, S3 | Moderate (2/3, S2 disputes) |
-| Computational compression suffices | S2 | Weak (single source, disputed) |
+| Simple architectures outperform complex ones | S1, S3 | Moderate (2/3, S2 favors platform delegation) |
+| Platform-managed delegation is the future | S2 | Weak (single source, newer approach) |
 ```
 </details>
 

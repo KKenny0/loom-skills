@@ -10,6 +10,7 @@ Write from research, then settle knowledge. Pipeline: draft → topic → index.
 ## Read First
 
 - `../shared/references/schemas.md`
+- `<vault-root>/.loom/config.yaml` if it exists (vault configuration)
 
 ## Stage 1 — Draft
 

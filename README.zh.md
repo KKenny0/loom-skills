@@ -12,13 +12,19 @@
 
 ## Why
 
-Loom（织）是一组面向 Claude Code 的个人知识库 skills。它不把 AI 研究当成一次性问答，而是把 URL、PDF、视频、论文、摘录和旧文章放进一条有边界的织机：来源是线，流程是织机，知识库是最终织出的布。
+三个月后，你在笔记里翻到一个判断。你还能分清它来自一篇论文、一篇博文、还是你自己的推测吗？
 
-AI 很擅长快速读材料，也很擅长写一段看起来完整的文字。问题是，如果没有阶段、schema 和写入边界，研究很快会变成一团难以追溯的线：来源混在观点里，草稿污染原始材料，索引靠记忆维护，几个月后已经不知道某个判断从哪里来。结果是：三个月后你在笔记里翻到一个判断，已经分不清它来自一篇论文、一篇博文、还是你自己的推测。
+AI 聊天前端很适合快速问答。但它们是短暂的——每次对话都是一座孤岛。如果你跨多次研究同一个领域，洞察散落在不同的聊天记录里，出处逐渐模糊。最后你得到的是一堆看起来合理的文字，却无法追溯。
 
-Loom 做的事情很朴素：先登记材料，再保存来源，再精读压缩，再综合成包，再写作、沉淀 Topic、维护索引、发现连接、观察演进。每一步都留下明确产物，每个产物都有自己的位置和责任。
+Loom 为累积性知识库而设计。每份来源原样保存。每条判断可以追溯到出处。每次综合是独立产物，草稿可以读取但绝不能改写。知识库会复利增长：第二个研究主题建立在第一个之上，最终你拥有的是聊天记录无法提供的东西——一个可搜索、可索引、可交叉引用的个人知识织物。
 
 Loom（织）weave research into knowledge.
+
+## 什么时候不用 Loom
+
+一次性快速查询不是 Loom 的场景。如果你只是想搞懂一篇文章或得到一个快速答案，直接用聊天前端——更快更省。
+
+Loom 适用于会复利增长的知识工作。如果你预期会重访一个主题、把它和其他主题连接、或以后基于它写作，这种结构就值得投入。
 
 ## Skills
 
@@ -34,7 +40,7 @@ Loom（织）weave research into knowledge.
 ## Quick look
 
 ```
-Input: three URLs on emergence theory
+Input: three articles on AI agent architecture
   → loom intake         → Material List (3 sources)
   → loom-research       → 3 Raw Captures + 3 Source Briefs + 1 Synthesis Pack
   → loom-write          → Draft article + 2 Topic Notes + Index update
@@ -45,21 +51,22 @@ Input: three URLs on emergence theory
 
 ```markdown
 ## Working Thesis
-Emergence is not a single phenomenon but a family of pattern-level
-behaviors that appear when simple components interact under constraints.
+Building an effective AI agent isn't about the framework — it's about
+designing the right boundary between model reasoning and tool execution.
 
 ## Conflicts
-- Source 1 (physicist): emergence requires irreducibility
-- Source 2 (complexity scientist): emergence is just computational
-  compression — no new physics needed
-- Source 3 (philosopher): both views collapse the phenomenological
-  experience of "something new"
+- Source 1 (Anthropic): keep agent architecture simple; augment LLM
+  capabilities with clear tool interfaces
+- Source 2 (OpenAI): delegate as much as possible to the platform
+  (handoffs, guardrails, tracing)
+- Source 3 (LangChain): compose agents as graphs with explicit state
+  management
 
 ## Evidence Weight
 | Claim | Sources | Weight |
 |-------|---------|--------|
-| Emergence is irreducible | S1, S3 | Moderate (2/3, S2 disputes) |
-| Computational compression suffices | S2 | Weak (single source, disputed) |
+| Simple architectures outperform complex ones | S1, S3 | Moderate (2/3, S2 favors platform delegation) |
+| Platform-managed delegation is the future | S2 | Weak (single source, newer approach) |
 ```
 </details>
 

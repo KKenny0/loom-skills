@@ -10,6 +10,7 @@ One skill for the full research pipeline: capture → read → synthesize.
 ## Read First
 
 - `../shared/references/schemas.md` (all artifact formats)
+- `<vault-root>/.loom/config.yaml` if it exists (vault configuration)
 
 ## Pipeline
 
@@ -19,6 +20,17 @@ Input (URLs, files, text, Material List)
   → Read: deep-read each source into a Source Brief
   → Synthesize: combine Source Briefs into a Synthesis Pack
 ```
+
+Each stage can run independently. The full pipeline is the default, not a requirement.
+
+### Stage selection
+
+| User says | Run |
+|-----------|-----|
+| "Capture these URLs" / "Save these sources" | Stage 1 only |
+| "Read this source" / "Brief this article" | Stage 2 for specified sources |
+| "Synthesize these briefs" / "Combine the Source Briefs" | Stage 3 only |
+| "Research this topic" (default) | Stages 1 → 2 → 3 |
 
 ## Stage 1 — Capture
 
@@ -115,3 +127,4 @@ Generator criteria: 独立性 (not derivable from others), 必要性 (removing b
 - If no Material List exists, create one before starting capture.
 - Every Daily Note must point to a real source via `raw_path`.
 - All output artifacts use the user's language (detected at intake). Raw Captures preserve source language.
+- Stages can run independently. When the user asks to capture only, stop after Stage 1. When asked to read one source, run only Stage 2 for that source. When asked to synthesize from existing Source Briefs, run only Stage 3. Skip stages whose output already exists.

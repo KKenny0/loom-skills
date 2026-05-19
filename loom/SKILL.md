@@ -11,6 +11,32 @@ Route ambiguous requests and create the Material List before any research begins
 
 - `../shared/references/schemas.md`
 
+## Cold Start
+
+Before routing, check whether the vault is configured.
+
+If `<vault-root>/.loom/config.yaml` does not exist, run a one-time setup interview:
+
+1. **Vault location** — Where should the vault live? Suggest `~/loom-vault`. Create the directory if needed.
+2. **Working language** — `zh`, `en`, or `auto` (detect per query).
+3. **Interest areas** — What topics is the user currently working on? (e.g. "AI Agent, Software Architecture"). These become the initial Category directories under `02_Topic_Notes/`.
+4. **Default research depth** — `quick` (Source Brief only), `standard` (through Synthesis Pack), or `deep` (full pipeline through Topic Note + Index).
+
+Write `.loom/config.yaml` to the vault root:
+
+```yaml
+vault_path: <absolute-path>
+language: <zh|en|auto>
+categories:
+  - <Category>
+output_depth: <quick|standard|deep>
+created: YYYY-MM-DD
+```
+
+If config already exists, read it. Use stored preferences as defaults — user can override per query.
+
+To change settings later, the user can say "reconfigure" or edit `.loom/config.yaml` directly.
+
 ## Routing
 
 When the user's intent is clear, route directly:

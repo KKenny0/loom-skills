@@ -33,6 +33,26 @@ Legacy `done` is preserved during migration. New files use the five values above
 
 ---
 
+## Vault Config
+
+Path: `<vault-root>/.loom/config.yaml`
+
+Created by cold-start interview on first `loom` invocation. Read by all sub-skills to apply user preferences.
+
+```yaml
+vault_path: "/absolute/path/to/vault"
+language: "zh"           # zh | en | auto
+categories:              # Initial topic categories for 02_Topic_Notes/
+  - "AI_Agent"
+  - "Software_Architecture"
+output_depth: "standard" # quick | standard | deep
+created: "2026-05-19"
+```
+
+Rules: all sub-skills read config if it exists. Config values are defaults — user can override per query. Editing `.loom/config.yaml` directly is supported; re-running cold-start is also supported by saying "reconfigure" during `loom` intake.
+
+---
+
 ## Material List
 
 Created during intake before any reading or drafting.
