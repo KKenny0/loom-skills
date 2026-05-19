@@ -18,7 +18,7 @@ AI can summarize quickly and draft fluent prose. Without stages, schemas, and wr
 
 Loom keeps the work structured: inventory material, capture sources, read deeply, synthesize across sources, draft prose, consolidate Topic Notes, maintain indexes, discover cross-topic links, and report knowledge evolution.
 
-The tool identity sits alongside the existing workflow tools: [Taku](https://github.com/KKenny0/Taku) builds with intent, [Lode](https://github.com/KKenny0/Lode) remembers what matters, and Loom weaves research into knowledge.
+Loom weaves research into knowledge.
 
 ## Skills
 
