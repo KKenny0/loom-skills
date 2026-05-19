@@ -73,7 +73,7 @@ behaviors that appear when simple components interact under constraints.
 ## Install
 
 ```bash
-npx skills add KKenny0/loom-skills
+npx skills add KKenny0/loom
 ```
 
 For local development, copy `loom`, `loom-research`, `loom-write`, `loom-maintain` directories into your skills directory.

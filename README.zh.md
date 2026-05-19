@@ -73,7 +73,7 @@ behaviors that appear when simple components interact under constraints.
 ## Install
 
 ```bash
-npx skills add KKenny0/loom-skills
+npx skills add KKenny0/loom
 ```
 
 本地开发时，也可以直接把 `loom`、`loom-research`、`loom-write`、`loom-maintain` 目录复制到 skills 目录。
