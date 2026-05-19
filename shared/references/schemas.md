@@ -153,6 +153,9 @@ Combines multiple Source Briefs into an article-ready research package.
 created: YYYY-MM-DD
 source_ids: [S1, S2]
 
+## Key Findings
+- [3-5 most important discoveries across all sources]
+
 ## Working Thesis
 [User/article thesis.]
 
@@ -188,7 +191,7 @@ source_ids: [S1, S2]
 | S1 | yes/no | yes/no | yes/no | ... |
 ```
 
-Rules: distinguish source consensus from user thesis. Do not hide conflicts. Mark high-risk claims. Drafts can read this but must not mutate it.
+Rules: distinguish source consensus from user thesis. Do not hide conflicts. Mark high-risk claims. Drafts can read this but must not mutate it. Key Findings: 3-5 bullets max, single-line each, no methodology — just what was found.
 
 ---
 

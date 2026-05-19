@@ -95,10 +95,11 @@ Generator criteria: 独立性 (not derivable from others), 必要性 (removing b
 - Each perspective must cite supporting evidence from Source Briefs. Perspectives without source backing are excluded.
 - Each perspective responds to evidence and to other perspectives.
 - Moderator synthesis: identify convergence, remaining disagreements, ASCII framework diagrams.
+- Output generators analysis and multi-perspective stress test under an `## Appendix` heading, separate from the core Synthesis Pack sections (Key Findings through Source Coverage Checklist).
 
 ### Output
 
-- Synthesis Pack following schemas.md: Working Thesis, Merged Conclusions, Conflicts, Evidence Weight, Consensus/Disagreement, Article Spine, High-Risk Claims, Source Coverage Checklist.
+- Synthesis Pack following schemas.md: Key Findings, Working Thesis, Merged Conclusions, Conflicts, Evidence Weight, Consensus/Disagreement, Article Spine, High-Risk Claims, Source Coverage Checklist.
 
 ### Synthesis rules
 
@@ -113,3 +114,4 @@ Generator criteria: 独立性 (not derivable from others), 必要性 (removing b
 - If the user provides a Material List from `loom` intake, use it as the source ledger.
 - If no Material List exists, create one before starting capture.
 - Every Daily Note must point to a real source via `raw_path`.
+- All output artifacts use the user's language (detected at intake). Raw Captures preserve source language.

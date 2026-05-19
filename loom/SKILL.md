@@ -35,3 +35,4 @@ Before routing to `loom-research` or `loom-write`, create a Material List:
 
 - Do not deep-read, synthesize, or draft in this stage.
 - Do not let Draft or Final wording overwrite Raw Capture, Daily Note, Source Brief, Synthesis Pack, or Topic Note content.
+- Detect user query language. All generated artifacts (Source Brief, Synthesis Pack, Draft, Topic Note) use the user's language. Raw Captures always preserve source language.

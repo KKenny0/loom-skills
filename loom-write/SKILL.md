@@ -15,13 +15,17 @@ Write from research, then settle knowledge. Pipeline: draft → topic → index.
 
 Write article prose from a Synthesis Pack (or reviewed Daily Notes if user explicitly wants a lighter workflow).
 
+### Focus narrowing
+
+Before drafting, review the Article Spine from the Synthesis Pack. Select 3-4 focus angles to go deep on. State which points get full treatment and which get brief mention or are omitted. Prefer narrow and deep over broad and thin.
+
 ### Writing flow — 5-step critical writing
 
 1. 摆观点: put the core viewpoint on the table explicitly.
 2. 第一刀 — 反问/追问/翻转: first cut — challenge with counter-question, deeper inquiry, or perspective flip.
 3. 第二刀: second cut pushes further into the tension.
 4. 切到底: cut to the bottom — reach the irreducible position.
-5. 综合: synthesize into 1000-1500 word output with the user's voice.
+5. 综合: synthesize with the user's voice. Match depth to topic scope — focused single-angle ~800 words, comprehensive multi-angle 2500-3500 words.
 
 ### Output formatting
 
