@@ -4,47 +4,71 @@
 
 <h1 align="center">Loom</h1>
 
-<p align="center">把散落的研究线头，织成可追溯的知识布匹。</p>
+<p align="center">Weave scattered research threads into traceable, evolving knowledge.</p>
 
 <p align="center">
-  <a href="README.en.md">English</a>
+  <a href="README.zh.md">中文</a>
 </p>
 
 ## Why
 
-Loom（织）是一组面向 Claude Code 的个人知识库 skills。它不把 AI 研究当成一次性问答，而是把 URL、PDF、视频、论文、摘录和旧文章放进一条有边界的织机：来源是线，流程是织机，知识库是最终织出的布。
+Loom is a Claude Code skill pack for personal knowledge vaults. It treats AI-assisted research as a staged pipeline rather than a one-shot chat: sources become threads, the workflow is the loom, and the vault is the fabric.
 
-AI 很擅长快速读材料，也很擅长写一段看起来完整的文字。问题是，如果没有阶段、schema 和写入边界，研究很快会变成一团难以追溯的线：来源混在观点里，草稿污染原始材料，索引靠记忆维护，几个月后已经不知道某个判断从哪里来。
+AI can summarize quickly and draft fluent prose. Without stages, schemas, and write boundaries, research drifts: sources blur into opinions, drafts overwrite evidence, indexes depend on memory, and older claims become hard to trace. The result: three months later, you find a claim in your notes and can't tell whether it came from a peer-reviewed paper, a blog post, or your own speculation.
 
-Loom 做的事情很朴素：先登记材料，再保存来源，再精读压缩，再综合成包，再写作、沉淀 Topic、维护索引、发现连接、观察演进。每一步都留下明确产物，每个产物都有自己的位置和责任。
+Loom keeps the work structured: inventory material, capture sources, read deeply, synthesize across sources, draft prose, consolidate Topic Notes, maintain indexes, discover cross-topic links, and report knowledge evolution.
 
-它和已有工具形成一组工作流隐喻：[Taku](https://github.com/KKenny0/Taku)（琢）build with intent，[Lode](https://github.com/KKenny0/Lode)（矿脉）remember what matters，Loom（织）weave research into knowledge.
+The tool identity sits alongside the existing workflow tools: [Taku](https://github.com/KKenny0/Taku) builds with intent, [Lode](https://github.com/KKenny0/Lode) remembers what matters, and Loom weaves research into knowledge.
 
 ## Skills
 
-4 个 skill，每个都是独立目录，包含 `SKILL.md` 和 `agents/openai.yaml`。
+4 skills, each a standalone directory with `SKILL.md` and `agents/openai.yaml`.
 
-| Skill | 何时使用 | 产物或动作 |
+| Skill | When to use | Output or action |
 | --- | --- | --- |
-| `loom` | 不确定该走哪个流程，或需要创建 Material List | 路由 + Material List |
-| `loom-research` | 研究材料：从 URL/文件/文本到 Synthesis Pack | Raw Capture + Daily Note + Source Brief + Synthesis Pack |
-| `loom-write` | 从研究到文章到知识沉淀 | Draft/Final + Topic Note + Index 更新 |
-| `loom-maintain` | Vault 治理：验证、迁移、连接发现、演进报告、索引重建 | Validation report / migration / CONNECTION_INDEX / Evolution Summary |
+| `loom` | Unsure which workflow, or need a Material List | Route + Material List |
+| `loom-research` | Research: URLs/files/text to Synthesis Pack | Raw Capture + Daily Note + Source Brief + Synthesis Pack |
+| `loom-write` | From research to article to knowledge consolidation | Draft/Final + Topic Note + Index update |
+| `loom-maintain` | Vault governance: validate, migrate, connect, evolve, index | Validation report / migration / CONNECTION_INDEX / Evolution Summary |
+
+## Quick look
+
+```
+Input: three URLs on emergence theory
+  → loom intake         → Material List (3 sources)
+  → loom-research       → 3 Raw Captures + 3 Source Briefs + 1 Synthesis Pack
+  → loom-write          → Draft article + 2 Topic Notes + Index update
+```
+
+<details>
+<summary>Sample Synthesis Pack (excerpt)</summary>
+
+```markdown
+## Working Thesis
+Emergence is not a single phenomenon but a family of pattern-level
+behaviors that appear when simple components interact under constraints.
+
+## Conflicts
+- Source 1 (physicist): emergence requires irreducibility
+- Source 2 (complexity scientist): emergence is just computational
+  compression — no new physics needed
+- Source 3 (philosopher): both views collapse the phenomenological
+  experience of "something new"
+
+## Evidence Weight
+| Claim | Sources | Weight |
+|-------|---------|--------|
+| Emergence is irreducible | S1, S3 | Moderate (2/3, S2 disputes) |
+| Computational compression suffices | S2 | Weak (single source, disputed) |
+```
+</details>
 
 ## Chaining
 
-- **研究到成文**：`loom`（intake）→ `loom-research`（capture + read + synthesis）→ `loom-write`（draft + topic + index）
-- **只做研究**：`loom` → `loom-research`
-- **从已有研究写文章**：`loom-write`
-- **Vault 治理**：`loom-maintain`
-
-## Vault Contract
-
-- Raw Capture、Daily Note、Source Brief、Synthesis Pack、Topic Note、Draft / Final 不能互相覆盖。
-- Material List 的 `raw_path` 必须指向真实来源、本地文件、原始 URL 或明确占位标记。
-- Draft / Final 可以有个人表达，但不能反向改写上游材料。
-- Topic Note 使用冷静知识库语气，不继承文章标题、平台语气或营销修辞。
-- 索引、扫描和校验由 `shared/scripts` 执行，默认 dry-run 或只读。
+- **Research to article**: `loom` (intake) → `loom-research` (capture + read + synthesis) → `loom-write` (draft + topic + index)
+- **Research only**: `loom` → `loom-research`
+- **Write from existing research**: `loom-write`
+- **Vault governance**: `loom-maintain`
 
 ## Install
 
@@ -52,7 +76,15 @@ Loom 做的事情很朴素：先登记材料，再保存来源，再精读压缩
 npx skills add KKenny0/loom-skills
 ```
 
-本地开发时，也可以直接把 `loom`、`loom-research`、`loom-write`、`loom-maintain` 目录复制到 skills 目录。
+For local development, copy `loom`, `loom-research`, `loom-write`, `loom-maintain` directories into your skills directory.
+
+## Vault Contract
+
+- Raw Capture, Daily Note, Source Brief, Synthesis Pack, Topic Note, Draft, and Final are separate artifacts. They cannot overwrite each other.
+- Every Material List `raw_path` points to a real source, local file, original URL, or explicit placeholder.
+- Draft and Final may use personal voice, but must not rewrite upstream evidence.
+- Topic Notes use a calm vault voice, not article rhetoric or platform tone.
+- Scanning, validation, and indexing live in `shared/scripts` and default to dry-run or read-only.
 
 ## Validate
 
@@ -74,16 +106,26 @@ python3 shared/scripts/build_indexes.py <vault-path>
 loom-skills/
 ├── loom/
 ├── loom-research/
+│   └── references/
+│       └── reading-variants.md  # reading methodology variants
 ├── loom-write/
 ├── loom-maintain/
 └── shared/
     ├── references/
-    │   ├── schemas.md          # all artifact schemas
-    │   └── writing-pipeline.md # pipeline reference
+    │   ├── schemas.md            # all artifact schemas
+    │   └── writing-pipeline.md   # pipeline reference
     └── scripts/
 ```
 
-Loom 是给长期知识库用的，不是内容包装工具箱。它不依赖外部 companion skill packs——所有核心阅读、分析和写作 patterns 已经内嵌到 `loom-research` 和 `loom-write` 中。
+Loom is for long-lived knowledge vaults, not a content packaging toolbox. All core reading, analysis, and writing patterns are embedded directly into `loom-research` and `loom-write` — no runtime companion skill dependencies required.
+
+## Acknowledgments
+
+Loom's analysis and writing patterns build on ideas from:
+
+- [ljg-skills](https://github.com/lijigang/ljg-skills) — deep reading, concept anatomy, domain decomposition, multi-perspective debate, critical writing, clarity checks
+- [baoyu-skills](https://github.com/JimLiu/baoyu-skills) — content detection, markdown formatting
+- [Karpathy's LLM knowledge base workflow](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) — vault structure inspiration
 
 ## License
 
