@@ -90,28 +90,25 @@ Combine Source Briefs into a Synthesis Pack.
 
 ### Synthesis flow
 
-**First pass — decomposition to generators:**
-1. 铺现象: lay out observed phenomena from all sources.
-2. 列候选: list candidate generators that could explain patterns.
-3. 递归追问: recursively ask "why?" of each candidate.
-4. 合并同源: merge candidates sharing the same root cause.
-5. 砍: cut candidates derived from deeper ones.
-6. 反生成: verify remaining generators can re-generate the phenomena.
-7. 预测+变更双测: predict what would change if each generator were altered.
+**First pass — decomposition to generators (internal reasoning):**
+Perform the 7-step decomposition internally. Do not write step-by-step output:
+1. 铺现象 → 2. 列候选 → 3. 递归追问 → 4. 合并同源 → 5. 砍 → 6. 反生成 → 7. 预测+变更双测
 
-Generator criteria: 独立性 (not derivable from others), 必要性 (removing breaks explanation), 生成力 (explains multiple phenomena), 简洁性 (no unnecessary complexity), 可证伪 (makes testable predictions). Explicitly evaluate each surviving generator against all 5 criteria in the output — do not apply them implicitly.
+Evaluate each surviving generator against all 5 criteria (独立性, 必要性, 生成力, 简洁性, 可证伪) internally. Then write a brief Analysis Summary (3-5 sentences) identifying the surviving generators and which criteria were weakest.
 
-**Second pass — multi-perspective stress test:**
+**Second pass — multi-perspective stress test (internal reasoning):**
+Perform the stress test internally. Do not write the full debate transcript:
 - Moderator is truth-seeking (not balanced — seeks best-supported position).
 - Invite 3-5 perspectives (real traditions or named frameworks).
 - Each perspective must cite supporting evidence from Source Briefs. Perspectives without source backing are excluded.
 - Each perspective responds to evidence and to other perspectives.
-- Moderator synthesis: identify convergence, remaining disagreements, ASCII framework diagrams.
-- Output generators analysis and multi-perspective stress test under an `## Appendix` heading, separate from the core Synthesis Pack sections (Key Findings through Source Coverage Checklist).
+- Moderator synthesizes convergence and remaining disagreements.
+
+Then write a brief Stress Test Summary (3-5 sentences): which perspectives converged, where they disagreed, and what the evidence best supports. Include an ASCII framework diagram only if it adds clarity beyond the text.
 
 ### Output
 
-- Synthesis Pack following schemas.md: Key Findings, Working Thesis, Merged Conclusions, Conflicts, Evidence Weight, Consensus/Disagreement, Article Spine, High-Risk Claims, Source Coverage Checklist.
+- Synthesis Pack following schemas.md: Key Findings, Working Thesis, Analysis Summary, Stress Test Summary, Merged Conclusions, Conflicts, Evidence Weight, Consensus/Disagreement, Article Spine, High-Risk Claims, Source Coverage Checklist.
 
 ### Synthesis rules
 

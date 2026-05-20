@@ -46,8 +46,23 @@ When the user's intent is clear, route directly:
 - **Vault maintenance** (validate, migrate, evolve, connect, index rebuild): use `loom-maintain`.
 
 When intent is ambiguous, ask one question: "Research, write, or maintain?"
+- **Research AND write** (e.g. "研究这三个URL并写篇文章"): execute the full pipeline directly — do not route (see Full Pipeline below).
 
 ## Intake
+
+### Topic query
+
+When the user provides a topic without sources (e.g. "agent memory 实现原理"):
+
+- If `<vault-root>/.loom/config.yaml` does not exist: guide the user. "Loom works best with source materials. Do you have URLs, PDFs, or text to share? If you just want a quick overview, a chat frontend may be faster."
+- If config exists: run source discovery.
+  1. Web-search the topic, find 3-5 high-quality sources. Prioritize official docs, technical articles, papers. Avoid social media, marketing content, content farms.
+  2. Present the source list to the user for quick approval.
+  3. If search results are low-quality, tell the user what was found and ask whether to proceed anyway or provide better sources.
+  4. Create Material List. Mark sources with a note that they were web-searched.
+  5. Proceed to intake.
+
+### Standard intake
 
 Before routing to `loom-research` or `loom-write`, create a Material List:
 
@@ -56,6 +71,23 @@ Before routing to `loom-research` or `loom-write`, create a Material List:
 3. Every source row must include a `raw_path`. If no local capture exists, use the original URL/path or `pasted-local-text` and mark capture status as pending.
 4. Record source tier, relevance, citation usability, and risk level conservatively.
 5. Suggest next step: `loom-research` or `loom-write`.
+
+## Full Pipeline
+
+When the user asks to research AND write, execute all stages in sequence:
+
+1. Intake → Material List (including topic query source discovery if needed)
+2. Capture → Raw Captures + inbox Daily Notes
+3. Read → Source Brief per source (following loom-research stages)
+4. Synthesize → Synthesis Pack (conclusions only; reasoning is internal)
+5. Draft → article from Synthesis Pack + Source Briefs (see loom-write source grounding)
+6. Topic Note → durable knowledge from Synthesis Pack
+7. Index → update TOPIC_INDEX and TIMELINE_INDEX
+
+At completion, report: article path, Synthesis Pack path, new Topic Notes, vault location.
+
+If the user asks to research only (no write), run stages 1-4.
+If the user asks to capture only, read only, or synthesize only, follow P3 stage selection.
 
 ## Rules
 

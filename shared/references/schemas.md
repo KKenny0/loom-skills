@@ -179,6 +179,14 @@ source_ids: [S1, S2]
 ## Working Thesis
 [User/article thesis.]
 
+## Analysis Summary
+[3-5 sentences. Which generators survived decomposition, which criteria were
+weakest. No step-by-step transcript.]
+
+## Stress Test Summary
+[3-5 sentences. Which perspectives converged, where they disagreed, what the
+evidence best supports. Include ASCII framework diagram only if it adds clarity.]
+
 ## Merged Conclusions
 - [Conclusion supported by multiple sources]
 
@@ -211,7 +219,7 @@ source_ids: [S1, S2]
 | S1 | yes/no | yes/no | yes/no | ... |
 ```
 
-Rules: distinguish source consensus from user thesis. Do not hide conflicts. Mark high-risk claims. Drafts can read this but must not mutate it. Key Findings: 3-5 bullets max, single-line each, no methodology — just what was found.
+Rules: distinguish source consensus from user thesis. Do not hide conflicts. Mark high-risk claims. Drafts can read this but must not mutate it. Key Findings: 3-5 bullets max, single-line each, no methodology. Analysis Summary and Stress Test Summary: 3-5 sentences each, no reasoning transcript.
 
 ---
 

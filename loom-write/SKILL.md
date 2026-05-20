@@ -20,6 +20,15 @@ Write article prose from a Synthesis Pack (or reviewed Daily Notes if user expli
 
 Before drafting, review the Article Spine from the Synthesis Pack. Select 3-4 focus angles to go deep on. State which points get full treatment and which get brief mention or are omitted. Prefer narrow and deep over broad and thin.
 
+### Source grounding
+
+Before drafting, re-read all Source Briefs from the vault. The Synthesis Pack provides structure; the Source Briefs provide substance.
+
+When drafting each section:
+- Every specific claim, data point, or code pattern must trace to at least one Source Brief. Cite sources inline with source ID (e.g. "S1 发现...", "根据 S2 的实现...").
+- For direct quotes, read the Raw Capture to verify exact wording.
+- If the Article Spine calls for content not covered by any Source Brief, mark it [需要额外来源] rather than fabricating from model knowledge.
+
 ### Writing flow — 5-step critical writing
 
 1. 摆观点: put the core viewpoint on the table explicitly.
@@ -40,6 +49,7 @@ Before drafting, review the Article Spine from the Synthesis Pack. Select 3-4 fo
 - Draft may polish, reorganize, and strengthen the user's voice.
 - Draft must NOT overwrite Raw Capture, Daily Note, Source Brief, Synthesis Pack, or Topic Note.
 - Draft content must be derivable from the Synthesis Pack.
+- Draft claims must be traceable to Source Briefs. No unsourced factual assertions.
 - Default destination: `01_Daily_Notes/YYYY/working/`.
 - Do not move to `published/` unless user explicitly confirms.
 - Preserve high-risk claim markers until verified or consciously accepted.
