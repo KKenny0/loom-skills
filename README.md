@@ -4,7 +4,7 @@
 
 <h1 align="center">Loom</h1>
 
-<p align="center">Weave scattered research threads into traceable, evolving knowledge.</p>
+<p align="center">Weave scattered sources into research that tells you what holds and what doesn't.</p>
 
 <p align="center">
   <a href="README.zh.md">中文</a>
@@ -12,19 +12,33 @@
 
 ## Why
 
-Three months from now, you find a claim in your notes. Can you tell whether it came from a peer-reviewed paper, a blog post, or your own speculation?
+Ask an AI chatbot to research a topic and write an article. It'll give you a smooth, confident answer. But real research isn't smooth — sources disagree, evidence varies in quality, some claims are built on thin ice. The AI averages what it knows. Disagreements get smoothed. Weak claims sound as solid as strong ones. You get an article that reads well but you can't tell where the ground is firm and where it isn't.
 
-AI chat frontends are great for quick answers. But they're ephemeral — each conversation is an island. If you research across multiple sessions, your insights scatter across chat logs, and provenance fades. You end up with a pile of plausible-sounding text and no way to trace it.
+Loom works differently. It reads your specific sources, not its training data. It captures them verbatim, analyzes each one independently, then synthesizes across them — but it doesn't smooth over conflicts. It tells you what the sources agree on, where they disagree, and which claims rest on weak evidence.
 
-Loom is for building a durable, cumulative knowledge base. Every source is captured verbatim. Every claim traces back to its origin. Every synthesis is a separate artifact that drafts can read but never mutate. The vault compounds: your second research topic builds on the first, and over time you have something a chat log can't give you — a searchable, indexed, cross-referenced personal knowledge fabric.
+The result: a research article grounded in your sources, backed by an evidence map that shows you the shape of what's known, what's contested, and what's unproven. Three months later, every claim still traces to its origin.
+
+Over time, your research compounds. Topic Notes connect across projects. Indexes build. You're not collecting chat logs — you're building a durable knowledge fabric where nothing gets lost and everything stays traceable.
 
 Loom weaves research into knowledge.
 
 ## When NOT to use Loom
 
-Loom is the wrong tool for one-off quick lookups. If you just want to understand a single article or get a fast answer, use a chat frontend — it'll be faster and cheaper.
+Loom is the wrong tool for:
+- **One-off quick lookups.** Paste into a chat frontend — faster and cheaper.
+- **Content that doesn't need source verification.** SEO posts, social media updates, generic explainers — Loom's overhead isn't worth it.
+- **Volume writing.** If you need five articles a day, this isn't your tool.
 
-Loom is the right tool when you're building knowledge that compounds. If you expect to revisit a topic, connect it to other topics, or write from it later, the structure pays for itself.
+Loom is the right tool when your research has stakes: a technical decision, a report, a literature review, or anything where getting it wrong costs more than the tokens.
+
+## Who is Loom for
+
+- **Technical leaders** evaluating architecture or tooling decisions.
+- **Analysts and journalists** working with documents, reports, or expert views.
+- **Researchers** doing literature review across papers and preprints.
+- **Serious learners** who want to understand a domain's full landscape, not just the most popular take.
+
+If your decision depends on knowing what's actually known — not just what's commonly said — Loom is for you.
 
 ## Skills
 
