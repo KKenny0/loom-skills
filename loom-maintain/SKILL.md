@@ -9,7 +9,7 @@ Vault governance: validate → migrate → connect → evolve → index.
 
 ## Read First
 
-- `../shared/references/schemas.md`
+- `references/schemas.md`
 - `<vault-root>/.loom/config.yaml` if it exists (vault configuration)
 
 ## Validate
@@ -17,8 +17,8 @@ Vault governance: validate → migrate → connect → evolve → index.
 Run read-only vault health check.
 
 ```bash
-python3 ../shared/scripts/scan_vault.py <vault-root>
-python3 ../shared/scripts/validate_vault.py <vault-root>
+python3 scripts/scan_vault.py <vault-root>
+python3 scripts/validate_vault.py <vault-root>
 ```
 
 Output: validation report with blocking errors and migration warnings.
@@ -44,9 +44,9 @@ Scan and migrate a legacy Markdown vault into the Loom schema.
 3. Apply only when user explicitly requests writes.
 
 ```bash
-python3 ../shared/scripts/scan_vault.py <vault-root>
-python3 ../shared/scripts/validate_vault.py <vault-root>
-python3 ../shared/scripts/build_indexes.py <vault-root>
+python3 scripts/scan_vault.py <vault-root>
+python3 scripts/validate_vault.py <vault-root>
+python3 scripts/build_indexes.py <vault-root>
 ```
 
 ### Migration rules
@@ -132,10 +132,10 @@ Rebuild deterministic vault indexes.
 
 ```bash
 # Dry run
-python3 ../shared/scripts/build_indexes.py <vault-root>
+python3 scripts/build_indexes.py <vault-root>
 
 # Write
-python3 ../shared/scripts/build_indexes.py <vault-root> --write
+python3 scripts/build_indexes.py <vault-root> --write
 ```
 
 Rules:

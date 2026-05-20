@@ -9,7 +9,7 @@ Write from research, then settle knowledge. Pipeline: draft → topic → index.
 
 ## Read First
 
-- `../shared/references/schemas.md`
+- `references/schemas.md`
 - `<vault-root>/.loom/config.yaml` if it exists (vault configuration)
 
 ## Stage 1 — Draft
@@ -115,10 +115,10 @@ Update vault indexes after Topic Note creation or changes.
 
 ```bash
 # Dry run (default)
-python3 ../shared/scripts/build_indexes.py <vault-root>
+python3 scripts/build_indexes.py <vault-root>
 
 # Write when explicitly requested
-python3 ../shared/scripts/build_indexes.py <vault-root> --write
+python3 scripts/build_indexes.py <vault-root> --write
 ```
 
 ### Index rules

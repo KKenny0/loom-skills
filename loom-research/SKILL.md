@@ -9,7 +9,7 @@ One skill for the full research pipeline: capture → read → synthesize.
 
 ## Read First
 
-- `../shared/references/schemas.md` (all artifact formats)
+- `references/schemas.md` (all artifact formats)
 - `<vault-root>/.loom/config.yaml` if it exists (vault configuration)
 
 ## Pipeline

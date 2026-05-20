@@ -9,7 +9,7 @@ Route ambiguous requests and create the Material List before any research begins
 
 ## Read First
 
-- `../shared/references/schemas.md`
+- `references/schemas.md`
 
 ## Cold Start
 
