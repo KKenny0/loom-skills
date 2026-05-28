@@ -109,7 +109,7 @@ designing the right boundary between model reasoning and tool execution.
 npx skills add KKenny0/loom
 ```
 
-For local development, copy `deep-read` and `loom-maintain` directories into your skills directory.
+For local development, copy `deep-read`, `excavate`, `debate`, `forge`, and `loom-maintain` directories into your skills directory.
 
 ## Vault Contract
 
@@ -122,7 +122,7 @@ For local development, copy `deep-read` and `loom-maintain` directories into you
 ## Validate
 
 ```bash
-for d in deep-read loom-maintain; do
+for d in deep-read loom-maintain excavate debate forge; do
   python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py "$PWD/$d"
 done
 ```
