@@ -1,7 +1,7 @@
 ---
 name: excavate
 description: >
-  假设考古 — 挖掘源材料或主张下的隐藏假设、未审视的前提、和隐含的思想框架。不是反驳，是考古。输入可以是 Source Brief、Topic Note、URL/文本、或一个主张。输出一份结构化的挖掘报告：表层主张 → 推理结构 → 隐藏假设 → 哪些有根基、哪些是继承的。当用户想要：挖掘某个主张的假设、找出一个理论框架的隐藏前提、分析某个观点站不站得住、质疑某个"常识"、或者理解"这个论点到底默认了什么"时触发。不触发：已经同意的观点不需要挖掘 → 直接用；技术 bug 排查 → hunt/investigate；纯事实查询 → chat。
+  假设考古 — 挖掘主张下的隐藏假设和未审视前提。输入 Source Brief、Topic Note、URL 或主张，输出结构化挖掘报告（表层主张 → 推理结构 → 隐藏假设 → 根基评级）。当用户想要挖掘假设、找隐藏前提、质疑"常识"、理解"这个论点默认了什么"、或分析观点站不站得住时使用。
 ---
 
 # Excavate
@@ -39,11 +39,17 @@ description: >
 |------|------|------|
 | target | 是 | 一个主张（文本）、Source Brief 路径、Topic Note 路径、或 URL |
 | context | 否 | 背景信息：这个主张在什么场景下被提出、谁提出的、为什么重要 |
-| depth | 否 | quick（3 层）或 deep（5 层），默认 deep |
+| depth | 否 | quick（仅主张还原→推理结构→假设挖掘，跳过诠释学回看和替代地基）或 deep（完整五层），默认 deep |
+| output_dir | 否 | 输出目录，覆盖默认路径规则 |
 
 ## 输出规范
 
 **文件命名**: `{主题}-excavate_{YYYY-MM-DD}.md`
+
+**输出路径**:
+1. 如果用户指定了 `output_dir`，写到指定目录
+2. 如果存在 vault 配置（`.loom/config.yaml` 中的 `vault_path`），写到 `<vault-root>/03_Content_Output/Longform/`
+3. 否则写到当前工作目录
 
 **文件开头**必须包含 YAML front matter：
 

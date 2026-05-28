@@ -1,7 +1,7 @@
 ---
 name: debate
 description: >
-  辩证推理 — 对主张或争议生成真正的辩证运动。不是罗列正反方，而是通过扬弃（Aufhebung）达到更高层次的理解。输入可以是一个主张、一个争议、Source Brief 中的 Disputes、或 Synthesis Pack 的 Conflicts。输出一份结构化的辩证记录。当用户想要：辩证分析某个争议、钢铁侠论证反对观点、对某个主张做压力测试、理解两个对立观点各自抓住了什么、或者"把这个问题辩一辩"时触发。不触发：简单的正反对比（列出优缺点）→ chat；假设挖掘 → excavate；概念连接 → forge。
+  辩证推理 — 通过扬弃达到更高层次理解，不是罗列正反方。输入主张、争议、Source Brief Disputes 或 Synthesis Pack Conflicts，输出结构化辩证记录（钢铁侠建构 → 反题 → 扬弃）。当用户想要辩证分析争议、钢铁侠论证、压力测试主张、"把问题辩一辩"、或理解对立观点各抓住了什么时使用。
 ---
 
 # Debate
@@ -41,10 +41,16 @@ description: >
 | context | 否 | 背景信息：这个争议的来龙去脉、涉及的利益方、为什么重要 |
 | rounds | 否 | 辩证轮数，1-3，默认 2。第一轮通常是"表态"，第二轮才开始真正深化 |
 | sources | 否 | Source Brief 路径或 URL，用于约束论证必须基于证据 |
+| output_dir | 否 | 输出目录，覆盖默认路径规则 |
 
 ## 输出规范
 
 **文件命名**: `{主题}-debate_{YYYY-MM-DD}.md`
+
+**输出路径**:
+1. 如果用户指定了 `output_dir`，写到指定目录
+2. 如果存在 vault 配置（`.loom/config.yaml` 中的 `vault_path`），写到 `<vault-root>/03_Content_Output/Longform/`
+3. 否则写到当前工作目录
 
 **文件开头**必须包含 YAML front matter：
 
