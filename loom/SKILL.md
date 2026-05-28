@@ -1,6 +1,6 @@
 ---
 name: loom
-description: Route ambiguous or multi-step Loom requests and create Material Lists. Use when the user provides mixed source material and needs help starting, when the request spans research and writing, or when unsure which loom-* skill applies. For clear single-intent requests, the sub-skills (loom-research, loom-write, loom-maintain) handle intake directly.
+description: Route ambiguous or multi-step Loom requests and create Material Lists. Use when the user provides mixed source material and needs help starting, when the request spans research and writing, or when unsure which loom-* skill applies. For clear single-intent requests, the sub-skills (loom-research, loom-maintain) handle intake directly.
 ---
 
 # Loom Router + Intake
@@ -42,10 +42,9 @@ To change settings later, the user can say "reconfigure" or edit `.loom/config.y
 When the user's intent is clear, route directly:
 
 - **Research materials** (URLs, PDFs, text → synthesis pack): use `loom-research`.
-- **Write or draft** (from synthesis or notes → article → topic → index): use `loom-write`.
-- **Vault maintenance** (validate, migrate, evolve, connect, index rebuild): use `loom-maintain`.
+- **Vault maintenance** (validate, migrate, evolve, connect, topic note, index rebuild): use `loom-maintain`.
 
-When intent is ambiguous, ask one question: "Research, write, or maintain?"
+When intent is ambiguous, ask one question: "Research or maintain?"
 - **Research AND write** (e.g. "研究这三个URL并写篇文章"): execute the full pipeline directly — do not route (see Full Pipeline below).
 
 ## Intake
@@ -64,13 +63,13 @@ When the user provides a topic without sources (e.g. "agent memory 实现原理"
 
 ### Standard intake
 
-Before routing to `loom-research` or `loom-write`, create a Material List:
+Before routing to `loom-research`, create a Material List:
 
 1. Classify task type: single-source deep dive, multi-source synthesis, theme research, or draft rewrite.
 2. For each source, record: ID (S1, S2…), Title, Author, Date, Type, Source Tier, Relevance, Citation Usability, Risk Level, Raw Path, Capture Status.
 3. Every source row must include a `raw_path`. If no local capture exists, use the original URL/path or `pasted-local-text` and mark capture status as pending.
 4. Record source tier, relevance, citation usability, and risk level conservatively.
-5. Suggest next step: `loom-research` or `loom-write`.
+5. Suggest next step: `loom-research` or `loom-maintain`.
 
 ## Full Pipeline
 
@@ -80,9 +79,9 @@ When the user asks to research AND write, execute all stages in sequence:
 2. Capture → Raw Captures + inbox Daily Notes
 3. Read → Source Brief per source (following loom-research stages)
 4. Synthesize → Synthesis Pack (conclusions only; reasoning is internal)
-5. Draft → article from Synthesis Pack + Source Briefs (see loom-write source grounding)
-6. Topic Note → durable knowledge from Synthesis Pack
-7. Index → update TOPIC_INDEX and TIMELINE_INDEX
+5. Compose → article from Synthesis Pack + Source Briefs (deep-read Compose stage)
+6. Topic Note → durable knowledge from Synthesis Pack (loom-maintain)
+7. Index → update TOPIC_INDEX and TIMELINE_INDEX (loom-maintain)
 
 At completion, report: article path, Synthesis Pack path, new Topic Notes, vault location.
 

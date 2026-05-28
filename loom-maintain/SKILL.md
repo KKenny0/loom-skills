@@ -57,6 +57,43 @@ python3 scripts/build_indexes.py <vault-root>
 - Do not move assets unless requested.
 - Before writing, summarize: files to create, files to update, fields to add, files left unchanged.
 
+## Topic Note
+
+Convert trusted research into durable Topic Notes.
+
+### Input priority
+
+1. Synthesis Pack (from deep-read).
+2. `reviewed` Daily Notes.
+3. Final or Published Article.
+
+### Topic creation flow
+
+**Structural decomposition:**
+- Identify the irreducible generators of the topic.
+- Map how they combine to produce observed phenomena.
+- Draw ASCII structural diagram.
+
+**Depth layers:**
+- Layer: surface facts → mechanisms → principles → axioms.
+- Mark where knowledge is solid vs. uncertain.
+
+### Output
+
+- Synthesis Topic Note in `02_Topic_Notes/<Category>/`.
+- Category directories use Pascal_Case.
+- Filename: `YYYY-MM-DD_Title-With-Words.md`.
+- When updating, increment minor version (1.0.0 → 1.1.0).
+- Schema details in `references/schemas.md` (Topic Note section).
+
+### Topic rules
+
+- Use calm knowledge-base voice. Not article rhetoric or platform tone.
+- Focus on structure, mechanisms, applicability, boundaries, related work, reusable insights.
+- Do not default to unreviewed Draft input. If user insists, mark source confidence explicitly.
+- Preserve link-only Topic Notes unless user requests synthesis.
+- After creating or updating a Topic Note, rebuild indexes (see Index Rebuild).
+
 ## Connect
 
 Discover and compile structured connections between Topic Notes.

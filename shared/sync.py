@@ -14,10 +14,6 @@ SYNC_MAP = {
     "deep-read": {
         "files": ["references/schemas.md"],
     },
-    "loom-write": {
-        "files": ["references/schemas.md"],
-        "scripts": ["build_indexes.py"],
-    },
     "loom-maintain": {
         "files": ["references/schemas.md"],
         "scripts": ["scan_vault.py", "validate_vault.py", "vault_utils.py", "build_indexes.py"],
