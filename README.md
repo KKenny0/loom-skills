@@ -16,11 +16,11 @@
 
 Loom 的做法不同。它读的是你给的来源，不是训练数据。它原样捕获、独立分析、再跨源综合——但不抹平冲突。它告诉你来源之间共识在哪、分歧在哪、哪些判断只靠弱证据撑着。
 
-结果：一篇扎根于你来源的研究文章，附带一份证据地图——让你一眼看清哪里是共识、哪里有争议、哪里还没被充分验证。三个月后回头看，每个判断仍然能追溯到出处。
-
-持续使用，研究会复利增长。Topic Notes 跨项目连接，索引自动建立。你积累的不是聊天记录，而是一块耐久的知识织物——不会丢失，永远可追溯。
+结果：一篇扎根于你来源的研究文章，附带一份证据地图——让你一眼看清哪里是共识、哪里有争议、哪里还没被充分验证。三个月后回头看，每个判断仍然能追溯到出处。持续使用时，Topic Notes 跨项目连接，研究会复利增长。
 
 Loom（织）weave research into knowledge.
+
+适用于研究结果有后果的场景：技术决策、分析报告、文献综述——任何"搞错了代价比 token 大"的事。
 
 ## 什么时候不用 Loom
 
@@ -28,17 +28,6 @@ Loom 不适合这些场景：
 - **一次性快速查询。** 贴到聊天前端——更快更省。
 - **不需要溯源的内容。** SEO 文章、社媒更新、通用科普——Loom 的 overhead 不值得。
 - **量产写作。** 如果你一天要出五篇，这不是你的工具。
-
-Loom 适用于研究结果有后果的场景：技术决策、分析报告、文献综述，或者任何"搞错了代价比 token 大"的事。
-
-## 谁适合用 Loom
-
-- **技术负责人** 做架构或工具选型决策。
-- **分析师和记者** 处理文档、报告或专家观点。
-- **研究者** 做跨论文和预印本的文献综述。
-- **认真的自学者** 想搞懂一个领域的完整版图，而不只是最流行的说法。
-
-如果你的决策取决于"真正已知的是什么"而不仅仅是"大家常说的是什么"——Loom 适合你。
 
 ## 架构
 
@@ -63,9 +52,9 @@ Loom 适用于研究结果有后果的场景：技术决策、分析报告、文
 | Skill | 何时使用 | 产物 |
 | --- | --- | --- |
 | `deep-read` | 深度阅读论文、文章、报告、访谈 → 研究文章 | Raw Capture + Source Brief + Synthesis Pack + 研究文章 |
-| `excavate` | 挖掘主张或源材料的隐藏假设 | 挖掘报告（假设考古） |
-| `debate` | 对争议或对立立场做辩证分析 | 辩证记录（扬弃式辩证推理） |
-| `forge` | 从跨域来源锻造新概念 | 锻造图（原子概念 → 跨域映射 → 新想法） |
+| `excavate` | 想搞清楚一个主张为什么成立、或挖掘隐藏前提时 | 挖掘报告（假设考古） |
+| `debate` | 遇到分歧或对立立场、想要真正的综合而非和稀泥时 | 辩证记录（扬弃式辩证推理） |
+| `forge` | 想从多个领域的素材中碰撞出新概念或新框架时 | 锻造图（原子概念 → 跨域映射 → 新想法） |
 | `loom-maintain` | Vault 治理：验证、迁移、连接发现、Topic Note、演进报告、索引重建 | Validation report / Topic Note / CONNECTION_INDEX / Evolution Summary |
 
 ## Quick look
@@ -111,6 +100,30 @@ npx skills add KKenny0/loom
 
 本地开发时，把 `deep-read`、`excavate`、`debate`、`forge` 和 `loom-maintain` 目录复制到 skills 目录。
 
+## 快速开始
+
+前置条件：[Claude Code](https://docs.anthropic.com/en/docs/claude-code) 已安装。
+
+最小使用——读一篇论文：
+
+```bash
+/deep-read https://arxiv.org/abs/xxxx.xxxxx
+```
+
+读多篇 + 思辨组合：
+
+```bash
+/deep-read paper1.pdf paper2.pdf paper3.pdf
+→ /excavate    # 挖隐藏假设
+→ /debate      # 对冲突做辩证
+→ /forge       # 跨域概念锻造
+```
+
+不需要 vault。所有产物直接输出在对话中。
+
+<details>
+<summary>开发者参考：Vault Contract 与校验</summary>
+
 ## Vault Contract
 
 - Raw Capture、Source Brief、Synthesis Pack、研究文章、Topic Note 是独立产物，不能互相覆盖。
@@ -132,6 +145,8 @@ python3 shared/scripts/scan_vault.py <vault-path>
 python3 shared/scripts/validate_vault.py <vault-path>
 python3 shared/scripts/build_indexes.py <vault-path>
 ```
+
+</details>
 
 ## 目录结构
 
