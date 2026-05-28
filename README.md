@@ -4,83 +4,83 @@
 
 <h1 align="center">Loom</h1>
 
-<p align="center">Weave scattered sources into research that tells you what holds and what doesn't.</p>
+<p align="center">把散落的来源，织成能看出"哪里站得住、哪里站不住"的研究。</p>
 
 <p align="center">
-  <a href="README.zh.md">中文</a>
+  <a href="README.en.md">English</a>
 </p>
 
 ## Why
 
-Ask an AI chatbot to research a topic and write an article. It'll give you a smooth, confident answer. But real research isn't smooth — sources disagree, evidence varies in quality, some claims are built on thin ice. The AI averages what it knows. Disagreements get smoothed. Weak claims sound as solid as strong ones. You get an article that reads well but you can't tell where the ground is firm and where it isn't.
+让 AI 聊天机器人研究一个主题写篇文章——它会给你一个流畅、自信的答案。但真正的研究不流畅。来源之间有分歧，证据质量参差不齐，有些判断下面只是薄薄一层冰。AI 把它知道的东西平均了一下。分歧被抹平，弱主张听起来和强证据一样笃定。你得到一篇读起来很顺的文章，却看不出哪里地基是实的、哪里是虚的。
 
-Loom works differently. It reads your specific sources, not its training data. It captures them verbatim, analyzes each one independently, then synthesizes across them — but it doesn't smooth over conflicts. It tells you what the sources agree on, where they disagree, and which claims rest on weak evidence.
+Loom 的做法不同。它读的是你给的来源，不是训练数据。它原样捕获、独立分析、再跨源综合——但不抹平冲突。它告诉你来源之间共识在哪、分歧在哪、哪些判断只靠弱证据撑着。
 
-The result: a research article grounded in your sources, backed by an evidence map that shows you the shape of what's known, what's contested, and what's unproven. Three months later, every claim still traces to its origin.
+结果：一篇扎根于你来源的研究文章，附带一份证据地图——让你一眼看清哪里是共识、哪里有争议、哪里还没被充分验证。三个月后回头看，每个判断仍然能追溯到出处。
 
-Over time, your research compounds. Topic Notes connect across projects. Indexes build. You're not collecting chat logs — you're building a durable knowledge fabric where nothing gets lost and everything stays traceable.
+持续使用，研究会复利增长。Topic Notes 跨项目连接，索引自动建立。你积累的不是聊天记录，而是一块耐久的知识织物——不会丢失，永远可追溯。
 
-Loom weaves research into knowledge.
+Loom（织）weave research into knowledge.
 
-## When NOT to use Loom
+## 什么时候不用 Loom
 
-Loom is the wrong tool for:
-- **One-off quick lookups.** Paste into a chat frontend — faster and cheaper.
-- **Content that doesn't need source verification.** SEO posts, social media updates, generic explainers — Loom's overhead isn't worth it.
-- **Volume writing.** If you need five articles a day, this isn't your tool.
+Loom 不适合这些场景：
+- **一次性快速查询。** 贴到聊天前端——更快更省。
+- **不需要溯源的内容。** SEO 文章、社媒更新、通用科普——Loom 的 overhead 不值得。
+- **量产写作。** 如果你一天要出五篇，这不是你的工具。
 
-Loom is the right tool when your research has stakes: a technical decision, a report, a literature review, or anything where getting it wrong costs more than the tokens.
+Loom 适用于研究结果有后果的场景：技术决策、分析报告、文献综述，或者任何"搞错了代价比 token 大"的事。
 
-## Who is Loom for
+## 谁适合用 Loom
 
-- **Technical leaders** evaluating architecture or tooling decisions.
-- **Analysts and journalists** working with documents, reports, or expert views.
-- **Researchers** doing literature review across papers and preprints.
-- **Serious learners** who want to understand a domain's full landscape, not just the most popular take.
+- **技术负责人** 做架构或工具选型决策。
+- **分析师和记者** 处理文档、报告或专家观点。
+- **研究者** 做跨论文和预印本的文献综述。
+- **认真的自学者** 想搞懂一个领域的完整版图，而不只是最流行的说法。
 
-If your decision depends on knowing what's actually known — not just what's commonly said — Loom is for you.
+如果你的决策取决于"真正已知的是什么"而不仅仅是"大家常说的是什么"——Loom 适合你。
 
-## Architecture
+## 架构
 
-Two research skills, three thinking lenses, one vault tool. Each skill is standalone — no vault required.
+两个研究技能，三个思辨镜头，一个 vault 工具。每个技能独立可用，不依赖 vault。
 
 ```
-Research layer (sources → complete article, each standalone):
-  deep-read       Papers, articles, reports → research article    [this repo]
-  source-dive     Technical source code → deep analysis article   [KKenny0/source-dive]
+研究层（素材 → 完整文章，各自独立可用）:
+  deep-read       论文、文章、报告 → 研究文章           [本 repo]
+  source-dive     技术源码 → 深度分析文章              [KKenny0/source-dive]
 
-Thinking lenses (apply to any Loom artifact or raw input):
-  excavate        Assumption archaeology — dig beneath the surface
-  debate          Dialectical reasoning — thesis → antithesis → aufhebung
-  forge           Conceptual forging — cross-domain synthesis and new ideas
+思辨镜头（对 Loom 产物或原始输入施加思考）:
+  excavate       假设考古 — 挖到地基下面
+  debate         辩证推理 — 正 → 反 → 扬弃
+  forge          概念锻造 — 跨域碰撞出新想法
 
-Optional vault infrastructure (personal use, open-source users can ignore):
-  loom-maintain   Vault health + Topic Notes + index maintenance  [this repo]
+可选 vault 基础设施（个人用，开源用户可忽略）:
+  loom-maintain   vault 健康 + Topic Note 创建 + 索引维护  [本 repo]
 ```
 
 ## Skills
 
-| Skill | When to use | Output |
+| Skill | 何时使用 | 产物 |
 | --- | --- | --- |
-| `deep-read` | Deep-read papers, articles, reports, interviews → research article | Raw Capture + Source Brief + Synthesis Pack + Research Article |
-| `excavate` | Dig beneath a claim or source to expose hidden assumptions | 挖掘报告 (assumption archaeology) |
-| `debate` | Dialectical analysis of a controversy or opposing positions | 辩证记录 (dialectical reasoning with aufhebung) |
-| `forge` | Forge new concepts from cross-domain sources | 锻造图 (atomic concepts → cross-domain mapping → new ideas) |
-| `loom-maintain` | Vault governance: validate, migrate, connect, evolve, Topic Notes, index | Validation report / Topic Note / CONNECTION_INDEX / Evolution Summary |
+| `deep-read` | 深度阅读论文、文章、报告、访谈 → 研究文章 | Raw Capture + Source Brief + Synthesis Pack + 研究文章 |
+| `excavate` | 挖掘主张或源材料的隐藏假设 | 挖掘报告（假设考古） |
+| `debate` | 对争议或对立立场做辩证分析 | 辩证记录（扬弃式辩证推理） |
+| `forge` | 从跨域来源锻造新概念 | 锻造图（原子概念 → 跨域映射 → 新想法） |
+| `loom-maintain` | Vault 治理：验证、迁移、连接发现、Topic Note、演进报告、索引重建 | Validation report / Topic Note / CONNECTION_INDEX / Evolution Summary |
 
 ## Quick look
 
 ```
 Input: three articles on AI agent architecture
-  → deep-read           → 3 Source Briefs + 1 Synthesis Pack + 1 Research Article
-  → excavate (opt)      → assumption report on key claims
-  → debate (opt)        → dialectical resolution of conflicting findings
-  → forge (opt)         → cross-domain concept map from Topic Notes
+  → deep-read           → 3 Source Briefs + 1 Synthesis Pack + 1 研究文章
+  → excavate (opt)      → 关键主张的假设挖掘报告
+  → debate (opt)        → 冲突发现的辩证综合
+  → forge (opt)         → 跨 Topic Note 的概念锻造图
   → loom-maintain (opt) → 2 Topic Notes + Index update
 ```
 
 <details>
-<summary>Sample Synthesis Pack (excerpt)</summary>
+<summary>Synthesis Pack 示例（节选）</summary>
 
 ```markdown
 ## Working Thesis
@@ -103,23 +103,23 @@ designing the right boundary between model reasoning and tool execution.
 ```
 </details>
 
-## Install
+## 安装
 
 ```bash
 npx skills add KKenny0/loom
 ```
 
-For local development, copy `deep-read`, `excavate`, `debate`, `forge`, and `loom-maintain` directories into your skills directory.
+本地开发时，把 `deep-read`、`excavate`、`debate`、`forge` 和 `loom-maintain` 目录复制到 skills 目录。
 
 ## Vault Contract
 
-- Raw Capture, Source Brief, Synthesis Pack, Research Article, and Topic Note are separate artifacts. They cannot overwrite each other.
-- Every Material List `raw_path` points to a real source, local file, original URL, or explicit placeholder.
-- Research Articles may use personal voice, but must not rewrite upstream evidence.
-- Topic Notes use a calm vault voice, not article rhetoric or platform tone.
-- Scanning, validation, and indexing live in `shared/scripts` and default to dry-run or read-only.
+- Raw Capture、Source Brief、Synthesis Pack、研究文章、Topic Note 是独立产物，不能互相覆盖。
+- Material List 的 `raw_path` 必须指向真实来源、本地文件、原始 URL 或明确占位标记。
+- 研究文章可以有个人表达，但不能反向改写上游材料。
+- Topic Note 使用冷静知识库语气，不继承文章标题、平台语气或营销修辞。
+- 索引、扫描和校验由 `shared/scripts` 执行，默认 dry-run 或只读。
 
-## Validate
+## 校验
 
 ```bash
 for d in deep-read loom-maintain excavate debate forge; do
@@ -133,13 +133,13 @@ python3 shared/scripts/validate_vault.py <vault-path>
 python3 shared/scripts/build_indexes.py <vault-path>
 ```
 
-## Background
+## 目录结构
 
 ```text
 loom-skills/
 ├── deep-read/
 │   └── references/
-│       ├── reading-variants.md   # reading methodology variants
+│       ├── reading-variants.md   # 阅读方法论变体
 │       └── schemas.md
 ├── excavate/
 │   └── references/
@@ -156,8 +156,8 @@ loom-skills/
 │       └── schemas.md
 └── shared/
     ├── references/
-    │   ├── schemas.md             # canonical artifact schemas
-    │   └── writing-pipeline.md    # pipeline + lens composition reference
+    │   ├── schemas.md             # 全部产物 schema
+    │   └── writing-pipeline.md    # 流水线 + 镜头组合参考
     └── scripts/
         ├── scan_vault.py
         ├── validate_vault.py
@@ -165,13 +165,13 @@ loom-skills/
         └── build_indexes.py
 ```
 
-## Acknowledgments
+## 致谢
 
-Loom's analysis and writing patterns build on ideas from:
+Loom 的分析和写作模式借鉴了以下来源的思想：
 
-- [ljg-skills](https://github.com/lijigang/ljg-skills) — deep reading, concept anatomy, domain decomposition, multi-perspective debate, critical writing, clarity checks
-- [baoyu-skills](https://github.com/JimLiu/baoyu-skills) — content detection, markdown formatting
-- [Karpathy's LLM knowledge base workflow](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) — vault structure inspiration
+- [ljg-skills](https://github.com/lijigang/ljg-skills) — 深度阅读、概念解剖、领域分解、多视角辩论、批判性写作、清晰度检查
+- [baoyu-skills](https://github.com/JimLiu/baoyu-skills) — 内容检测、Markdown 格式化
+- [Karpathy 的 LLM 知识库工作流](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) — 知识库结构灵感
 
 ## License
 
