@@ -15,6 +15,23 @@ Input
 → Index / Connection / Evolution
 ```
 
+## Optional Research Lenses
+
+Three independent skills apply thinking lenses to Loom artifacts or raw input. They are not pipeline stages — they can be used at any point, independently or together.
+
+```text
+excavate    Source Brief / Topic Note / claim → 挖掘报告 (assumption archaeology)
+debate      Claim / controversy / Disputes    → 辩证记录 (dialectical reasoning)
+forge       Multiple sources (cross-domain)   → 锻造图 (conceptual forging)
+```
+
+Typical compositions:
+
+- Source Brief → **excavate** → enriched Limits section
+- Synthesis Pack Conflicts → **debate** → dialectical resolution replaces simple conflict table
+- Multiple Topic Notes → **forge** → new Topic Note + CONNECTION_INDEX update
+- Raw claim → **excavate** → **debate** → deep understanding of a single proposition
+
 ## Stage Boundaries
 
 ### 1. Intake

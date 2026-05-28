@@ -42,12 +42,17 @@ If your decision depends on knowing what's actually known — not just what's co
 
 ## Architecture
 
-Two research skills, one vault tool. Each skill is standalone — no vault required.
+Two research skills, three thinking lenses, one vault tool. Each skill is standalone — no vault required.
 
 ```
 Research layer (sources → complete article, each standalone):
   deep-read       Papers, articles, reports → research article    [this repo]
   source-dive     Technical source code → deep analysis article   [KKenny0/source-dive]
+
+Thinking lenses (apply to any Loom artifact or raw input):
+  excavate        Assumption archaeology — dig beneath the surface
+  debate          Dialectical reasoning — thesis → antithesis → aufhebung
+  forge           Conceptual forging — cross-domain synthesis and new ideas
 
 Optional vault infrastructure (personal use, open-source users can ignore):
   loom-maintain   Vault health + Topic Notes + index maintenance  [this repo]
@@ -58,6 +63,9 @@ Optional vault infrastructure (personal use, open-source users can ignore):
 | Skill | When to use | Output |
 | --- | --- | --- |
 | `deep-read` | Deep-read papers, articles, reports, interviews → research article | Raw Capture + Source Brief + Synthesis Pack + Research Article |
+| `excavate` | Dig beneath a claim or source to expose hidden assumptions | 挖掘报告 (assumption archaeology) |
+| `debate` | Dialectical analysis of a controversy or opposing positions | 辩证记录 (dialectical reasoning with aufhebung) |
+| `forge` | Forge new concepts from cross-domain sources | 锻造图 (atomic concepts → cross-domain mapping → new ideas) |
 | `loom-maintain` | Vault governance: validate, migrate, connect, evolve, Topic Notes, index | Validation report / Topic Note / CONNECTION_INDEX / Evolution Summary |
 
 ## Quick look
@@ -65,6 +73,9 @@ Optional vault infrastructure (personal use, open-source users can ignore):
 ```
 Input: three articles on AI agent architecture
   → deep-read           → 3 Source Briefs + 1 Synthesis Pack + 1 Research Article
+  → excavate (opt)      → assumption report on key claims
+  → debate (opt)        → dialectical resolution of conflicting findings
+  → forge (opt)         → cross-domain concept map from Topic Notes
   → loom-maintain (opt) → 2 Topic Notes + Index update
 ```
 
@@ -130,13 +141,23 @@ loom-skills/
 │   └── references/
 │       ├── reading-variants.md   # reading methodology variants
 │       └── schemas.md
+├── excavate/
+│   └── references/
+│       └── schemas.md
+├── debate/
+│   └── references/
+│       └── schemas.md
+├── forge/
+│   └── references/
+│       └── schemas.md
 ├── loom-maintain/
 │   ├── scripts/
 │   └── references/
 │       └── schemas.md
 └── shared/
     ├── references/
-    │   └── schemas.md             # canonical artifact schemas
+    │   ├── schemas.md             # canonical artifact schemas
+    │   └── writing-pipeline.md    # pipeline + lens composition reference
     └── scripts/
         ├── scan_vault.py
         ├── validate_vault.py

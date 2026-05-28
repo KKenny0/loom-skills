@@ -11,6 +11,15 @@ SYNC_MAP = {
     "deep-read": {
         "files": ["references/schemas.md"],
     },
+    "excavate": {
+        "files": ["references/schemas.md"],
+    },
+    "debate": {
+        "files": ["references/schemas.md"],
+    },
+    "forge": {
+        "files": ["references/schemas.md"],
+    },
     "loom-maintain": {
         "files": ["references/schemas.md"],
         "scripts": ["scan_vault.py", "validate_vault.py", "vault_utils.py", "build_indexes.py"],

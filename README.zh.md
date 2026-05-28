@@ -42,12 +42,17 @@ Loom 适用于研究结果有后果的场景：技术决策、分析报告、文
 
 ## 架构
 
-两个研究技能，一个 vault 工具。每个研究技能独立可用，不依赖 vault。
+两个研究技能，三个思辨镜头，一个 vault 工具。每个技能独立可用，不依赖 vault。
 
 ```
 研究层（素材 → 完整文章，各自独立可用）:
   deep-read       论文、文章、报告 → 研究文章           [本 repo]
   source-dive     技术源码 → 深度分析文章              [KKenny0/source-dive]
+
+思辨镜头（对 Loom 产物或原始输入施加思考）:
+  excavate       假设考古 — 挖到地基下面
+  debate         辩证推理 — 正 → 反 → 扬弃
+  forge          概念锻造 — 跨域碰撞出新想法
 
 可选 vault 基础设施（个人用，开源用户可忽略）:
   loom-maintain   vault 健康 + Topic Note 创建 + 索引维护  [本 repo]
@@ -58,6 +63,9 @@ Loom 适用于研究结果有后果的场景：技术决策、分析报告、文
 | Skill | 何时使用 | 产物 |
 | --- | --- | --- |
 | `deep-read` | 深度阅读论文、文章、报告、访谈 → 研究文章 | Raw Capture + Source Brief + Synthesis Pack + 研究文章 |
+| `excavate` | 挖掘主张或源材料的隐藏假设 | 挖掘报告（假设考古） |
+| `debate` | 对争议或对立立场做辩证分析 | 辩证记录（扬弃式辩证推理） |
+| `forge` | 从跨域来源锻造新概念 | 锻造图（原子概念 → 跨域映射 → 新想法） |
 | `loom-maintain` | Vault 治理：验证、迁移、连接发现、Topic Note、演进报告、索引重建 | Validation report / Topic Note / CONNECTION_INDEX / Evolution Summary |
 
 ## Quick look
@@ -65,6 +73,9 @@ Loom 适用于研究结果有后果的场景：技术决策、分析报告、文
 ```
 Input: three articles on AI agent architecture
   → deep-read           → 3 Source Briefs + 1 Synthesis Pack + 1 研究文章
+  → excavate (opt)      → 关键主张的假设挖掘报告
+  → debate (opt)        → 冲突发现的辩证综合
+  → forge (opt)         → 跨 Topic Note 的概念锻造图
   → loom-maintain (opt) → 2 Topic Notes + Index update
 ```
 
@@ -98,7 +109,7 @@ designing the right boundary between model reasoning and tool execution.
 npx skills add KKenny0/loom
 ```
 
-本地开发时，把 `deep-read` 和 `loom-maintain` 目录复制到 skills 目录。
+本地开发时，把 `deep-read`、`excavate`、`debate`、`forge` 和 `loom-maintain` 目录复制到 skills 目录。
 
 ## Vault Contract
 
@@ -111,7 +122,7 @@ npx skills add KKenny0/loom
 ## 校验
 
 ```bash
-for d in deep-read loom-maintain; do
+for d in deep-read loom-maintain excavate debate forge; do
   python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py "$PWD/$d"
 done
 ```
@@ -130,13 +141,23 @@ loom-skills/
 │   └── references/
 │       ├── reading-variants.md   # 阅读方法论变体
 │       └── schemas.md
+├── excavate/
+│   └── references/
+│       └── schemas.md
+├── debate/
+│   └── references/
+│       └── schemas.md
+├── forge/
+│   └── references/
+│       └── schemas.md
 ├── loom-maintain/
 │   ├── scripts/
 │   └── references/
 │       └── schemas.md
 └── shared/
     ├── references/
-    │   └── schemas.md             # 全部产物 schema
+    │   ├── schemas.md             # 全部产物 schema
+    │   └── writing-pipeline.md    # 流水线 + 镜头组合参考
     └── scripts/
         ├── scan_vault.py
         ├── validate_vault.py
