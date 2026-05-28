@@ -16,11 +16,11 @@ Ask an AI chatbot to research a topic and write an article. It'll give you a smo
 
 Loom works differently. It reads your specific sources, not its training data. It captures them verbatim, analyzes each one independently, then synthesizes across them — but it doesn't smooth over conflicts. It tells you what the sources agree on, where they disagree, and which claims rest on weak evidence.
 
-The result: a research article grounded in your sources, backed by an evidence map that shows you the shape of what's known, what's contested, and what's unproven. Three months later, every claim still traces to its origin.
-
-Over time, your research compounds. Topic Notes connect across projects. Indexes build. You're not collecting chat logs — you're building a durable knowledge fabric where nothing gets lost and everything stays traceable.
+The result: a research article grounded in your sources, backed by an evidence map that shows you the shape of what's known, what's contested, and what's unproven. Three months later, every claim still traces to its origin. Over time, Topic Notes connect across projects and research compounds.
 
 Loom weaves research into knowledge.
+
+For situations where research results carry stakes: technical decisions, analytical reports, literature reviews — anything where getting it wrong costs more than the tokens.
 
 ## When NOT to use Loom
 
@@ -29,25 +29,15 @@ Loom is the wrong tool for:
 - **Content that doesn't need source verification.** SEO posts, social media updates, generic explainers — Loom's overhead isn't worth it.
 - **Volume writing.** If you need five articles a day, this isn't your tool.
 
-Loom is the right tool when your research has stakes: a technical decision, a report, a literature review, or anything where getting it wrong costs more than the tokens.
-
-## Who is Loom for
-
-- **Technical leaders** evaluating architecture or tooling decisions.
-- **Analysts and journalists** working with documents, reports, or expert views.
-- **Researchers** doing literature review across papers and preprints.
-- **Serious learners** who want to understand a domain's full landscape, not just the most popular take.
-
-If your decision depends on knowing what's actually known — not just what's commonly said — Loom is for you.
-
 ## Architecture
 
-Two research skills, three thinking lenses, one vault tool. Each skill is standalone — no vault required.
+Three research skills, three thinking lenses, one vault tool. Each skill is standalone — no vault required.
 
 ```
 Research layer (sources → complete article, each standalone):
   deep-read       Papers, articles, reports → research article    [this repo]
   source-dive     Technical source code → deep analysis article   [KKenny0/source-dive]
+  survey          Domain name/direction → structured domain map   [this repo]
 
 Thinking lenses (apply to any Loom artifact or raw input):
   excavate        Assumption archaeology — dig beneath the surface
@@ -63,7 +53,8 @@ Optional vault infrastructure (personal use, open-source users can ignore):
 | Skill | When to use | Output |
 | --- | --- | --- |
 | `deep-read` | Deep-read papers, articles, reports, interviews → research article | Raw Capture + Source Brief + Synthesis Pack + Research Article |
-| `excavate` | Dig beneath a claim or source to expose hidden assumptions | 挖掘报告 (assumption archaeology) |
+| `survey` | Want to understand a domain's landscape, enter a new direction, or find a survey-style domain map | Domain map (research programmes → debates → evolution → open problems → entry points) |
+| `excavate` | Want to understand why a claim holds, or dig into hidden premises | Excavation report (assumption archaeology) |
 | `debate` | Dialectical analysis of a controversy or opposing positions | 辩证记录 (dialectical reasoning with aufhebung) |
 | `forge` | Forge new concepts from cross-domain sources | 锻造图 (atomic concepts → cross-domain mapping → new ideas) |
 | `loom-maintain` | Vault governance: validate, migrate, connect, evolve, Topic Notes, index | Validation report / Topic Note / CONNECTION_INDEX / Evolution Summary |
@@ -77,6 +68,11 @@ Input: three articles on AI agent architecture
   → debate (opt)        → dialectical resolution of conflicting findings
   → forge (opt)         → cross-domain concept map from Topic Notes
   → loom-maintain (opt) → 2 Topic Notes + Index update
+
+Input: a new research direction
+  → survey              → domain map (programmes, debates, evolution, open problems, entry points)
+  → deep-read (opt)     → deep-read key papers from the entry recommendations
+  → excavate (opt)      → excavate core assumptions of a programme
 ```
 
 <details>
@@ -109,7 +105,31 @@ designing the right boundary between model reasoning and tool execution.
 npx skills add KKenny0/loom
 ```
 
-For local development, copy `deep-read`, `excavate`, `debate`, `forge`, and `loom-maintain` directories into your skills directory.
+For local development, copy `deep-read`, `survey`, `excavate`, `debate`, `forge`, and `loom-maintain` directories into your skills directory.
+
+## Quick Start
+
+Prerequisite: [Claude Code](https://docs.anthropic.com/en/docs/claude-code) installed.
+
+Minimal usage — read a paper:
+
+```bash
+/deep-read https://arxiv.org/abs/xxxx.xxxxx
+```
+
+Multi-source + thinking lens combo:
+
+```bash
+/deep-read paper1.pdf paper2.pdf paper3.pdf
+→ /excavate    # dig hidden assumptions
+→ /debate      # dialectical analysis of conflicts
+→ /forge       # cross-domain concept forging
+```
+
+No vault needed. All outputs appear directly in the conversation.
+
+<details>
+<summary>Developer reference: Vault Contract & Validation</summary>
 
 ## Vault Contract
 
@@ -122,7 +142,7 @@ For local development, copy `deep-read`, `excavate`, `debate`, `forge`, and `loo
 ## Validate
 
 ```bash
-for d in deep-read loom-maintain excavate debate forge; do
+for d in deep-read loom-maintain survey excavate debate forge; do
   python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py "$PWD/$d"
 done
 ```
@@ -133,13 +153,22 @@ python3 shared/scripts/validate_vault.py <vault-path>
 python3 shared/scripts/build_indexes.py <vault-path>
 ```
 
-## Background
+</details>
+
+## Directory Structure
 
 ```text
 loom-skills/
 ├── deep-read/
 │   └── references/
 │       ├── reading-variants.md   # reading methodology variants
+│       └── schemas.md
+├── survey/
+│   ├── Workflows/
+│   │   ├── 01-scout.md
+│   │   ├── 02-map.md
+│   │   └── 03-compose.md
+│   └── references/
 │       └── schemas.md
 ├── excavate/
 │   └── references/
