@@ -1,4 +1,0 @@
-interface:
-  display_name: "Loom"
-  short_description: "Route requests and create Material Lists"
-  default_prompt: "Use $loom to classify and route this request, then create a Material List."

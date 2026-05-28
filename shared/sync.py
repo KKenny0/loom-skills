@@ -8,9 +8,6 @@ SHARED = Path(__file__).resolve().parent
 REPO = SHARED.parent
 
 SYNC_MAP = {
-    "loom": {
-        "files": ["references/schemas.md"],
-    },
     "deep-read": {
         "files": ["references/schemas.md"],
     },

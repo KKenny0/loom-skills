@@ -1,6 +1,6 @@
 ---
 name: loom-maintain
-description: Validate, migrate, discover connections, generate evolution summaries, and rebuild indexes for a Loom vault. Use when the user asks to check vault health, migrate a legacy vault, find cross-topic connections, generate evolution reports, or rebuild indexes.
+description: Validate, migrate, discover connections, generate evolution summaries, create Topic Notes, and rebuild indexes for a Loom vault. Use when the user asks to check vault health, migrate a legacy vault, find cross-topic connections, generate evolution reports, create or update Topic Notes, or rebuild indexes.
 ---
 
 # Loom Maintain
@@ -124,7 +124,7 @@ Discover and compile structured connections between Topic Notes.
 - Every insight must be concrete and actionable.
 - Do not duplicate existing topic pairs in either direction.
 - Newest connections first.
-- Connect discovers structural links between finalized Topic Notes. It is not a re-analysis of sources — analytical synthesis of raw Source Briefs belongs in loom-research's Synthesis Pack, not here.
+- Connect discovers structural links between finalized Topic Notes. It is not a re-analysis of sources — analytical synthesis of raw Source Briefs belongs in deep-read's Synthesis Pack, not here.
 
 ## Evolve
 
