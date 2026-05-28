@@ -1,0 +1,4 @@
+interface:
+  display_name: "Deep Read"
+  short_description: "Deep-read non-technical sources into research articles"
+  default_prompt: "Use $deep-read to process these sources into a research article."

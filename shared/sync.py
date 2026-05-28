@@ -11,7 +11,7 @@ SYNC_MAP = {
     "loom": {
         "files": ["references/schemas.md"],
     },
-    "loom-research": {
+    "deep-read": {
         "files": ["references/schemas.md"],
     },
     "loom-write": {
