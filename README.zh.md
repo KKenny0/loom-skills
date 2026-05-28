@@ -40,24 +40,32 @@ Loom 适用于研究结果有后果的场景：技术决策、分析报告、文
 
 如果你的决策取决于"真正已知的是什么"而不仅仅是"大家常说的是什么"——Loom 适合你。
 
+## 架构
+
+两个研究技能，一个 vault 工具。每个研究技能独立可用，不依赖 vault。
+
+```
+研究层（素材 → 完整文章，各自独立可用）:
+  deep-read       论文、文章、报告 → 研究文章           [本 repo]
+  source-dive     技术源码 → 深度分析文章              [KKenny0/source-dive]
+
+可选 vault 基础设施（个人用，开源用户可忽略）:
+  loom-maintain   vault 健康 + Topic Note 创建 + 索引维护  [本 repo]
+```
+
 ## Skills
 
-4 个 skill，每个都是独立目录，包含 `SKILL.md` 和 `agents/openai.yaml`。
-
-| Skill | 何时使用 | 产物或动作 |
+| Skill | 何时使用 | 产物 |
 | --- | --- | --- |
-| `loom` | 不确定该走哪个流程，或需要创建 Material List | 路由 + Material List |
-| `loom-research` | 研究材料：从 URL/文件/文本到 Synthesis Pack | Raw Capture + Daily Note + Source Brief + Synthesis Pack |
-| `loom-write` | 从研究到文章到知识沉淀 | Draft/Final + Topic Note + Index 更新 |
-| `loom-maintain` | Vault 治理：验证、迁移、连接发现、演进报告、索引重建 | Validation report / migration / CONNECTION_INDEX / Evolution Summary |
+| `deep-read` | 深度阅读论文、文章、报告、访谈 → 研究文章 | Raw Capture + Source Brief + Synthesis Pack + 研究文章 |
+| `loom-maintain` | Vault 治理：验证、迁移、连接发现、Topic Note、演进报告、索引重建 | Validation report / Topic Note / CONNECTION_INDEX / Evolution Summary |
 
 ## Quick look
 
 ```
 Input: three articles on AI agent architecture
-  → loom intake         → Material List (3 sources)
-  → loom-research       → 3 Raw Captures + 3 Source Briefs + 1 Synthesis Pack
-  → loom-write          → Draft article + 2 Topic Notes + Index update
+  → deep-read           → 3 Source Briefs + 1 Synthesis Pack + 1 研究文章
+  → loom-maintain (opt) → 2 Topic Notes + Index update
 ```
 
 <details>
@@ -84,33 +92,26 @@ designing the right boundary between model reasoning and tool execution.
 ```
 </details>
 
-## Chaining
-
-- **研究到成文**：`loom`（intake）→ `loom-research`（capture + read + synthesis）→ `loom-write`（draft + topic + index）
-- **只做研究**：`loom` → `loom-research`
-- **从已有研究写文章**：`loom-write`
-- **Vault 治理**：`loom-maintain`
-
-## Install
+## 安装
 
 ```bash
 npx skills add KKenny0/loom
 ```
 
-本地开发时，也可以直接把 `loom`、`loom-research`、`loom-write`、`loom-maintain` 目录复制到 skills 目录。
+本地开发时，把 `deep-read` 和 `loom-maintain` 目录复制到 skills 目录。
 
 ## Vault Contract
 
-- Raw Capture、Daily Note、Source Brief、Synthesis Pack、Topic Note、Draft / Final 不能互相覆盖。
+- Raw Capture、Source Brief、Synthesis Pack、研究文章、Topic Note 是独立产物，不能互相覆盖。
 - Material List 的 `raw_path` 必须指向真实来源、本地文件、原始 URL 或明确占位标记。
-- Draft / Final 可以有个人表达，但不能反向改写上游材料。
+- 研究文章可以有个人表达，但不能反向改写上游材料。
 - Topic Note 使用冷静知识库语气，不继承文章标题、平台语气或营销修辞。
 - 索引、扫描和校验由 `shared/scripts` 执行，默认 dry-run 或只读。
 
-## Validate
+## 校验
 
 ```bash
-for d in loom loom-research loom-write loom-maintain; do
+for d in deep-read loom-maintain; do
   python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py "$PWD/$d"
 done
 ```
@@ -121,26 +122,29 @@ python3 shared/scripts/validate_vault.py <vault-path>
 python3 shared/scripts/build_indexes.py <vault-path>
 ```
 
-## Background
+## 目录结构
 
 ```text
 loom-skills/
-├── loom/
-├── loom-research/
+├── deep-read/
 │   └── references/
-│       └── reading-variants.md  # reading methodology variants
-├── loom-write/
+│       ├── reading-variants.md   # 阅读方法论变体
+│       └── schemas.md
 ├── loom-maintain/
+│   ├── scripts/
+│   └── references/
+│       └── schemas.md
 └── shared/
     ├── references/
-    │   ├── schemas.md            # all artifact schemas
-    │   └── writing-pipeline.md   # pipeline reference
+    │   └── schemas.md             # 全部产物 schema
     └── scripts/
+        ├── scan_vault.py
+        ├── validate_vault.py
+        ├── vault_utils.py
+        └── build_indexes.py
 ```
 
-Loom 是给长期知识库用的，不是内容包装工具箱。所有核心阅读、分析和写作 patterns 已经内嵌到 `loom-research` 和 `loom-write` 中——运行时不依赖外部 companion skill packs。
-
-## Acknowledgments
+## 致谢
 
 Loom 的分析和写作模式借鉴了以下来源的思想：
 

@@ -40,24 +40,32 @@ Loom is the right tool when your research has stakes: a technical decision, a re
 
 If your decision depends on knowing what's actually known — not just what's commonly said — Loom is for you.
 
+## Architecture
+
+Two research skills, one vault tool. Each skill is standalone — no vault required.
+
+```
+Research layer (sources → complete article, each standalone):
+  deep-read       Papers, articles, reports → research article    [this repo]
+  source-dive     Technical source code → deep analysis article   [KKenny0/source-dive]
+
+Optional vault infrastructure (personal use, open-source users can ignore):
+  loom-maintain   Vault health + Topic Notes + index maintenance  [this repo]
+```
+
 ## Skills
 
-4 skills, each a standalone directory with `SKILL.md` and `agents/openai.yaml`.
-
-| Skill | When to use | Output or action |
+| Skill | When to use | Output |
 | --- | --- | --- |
-| `loom` | Unsure which workflow, or need a Material List | Route + Material List |
-| `loom-research` | Research: URLs/files/text to Synthesis Pack | Raw Capture + Daily Note + Source Brief + Synthesis Pack |
-| `loom-write` | From research to article to knowledge consolidation | Draft/Final + Topic Note + Index update |
-| `loom-maintain` | Vault governance: validate, migrate, connect, evolve, index | Validation report / migration / CONNECTION_INDEX / Evolution Summary |
+| `deep-read` | Deep-read papers, articles, reports, interviews → research article | Raw Capture + Source Brief + Synthesis Pack + Research Article |
+| `loom-maintain` | Vault governance: validate, migrate, connect, evolve, Topic Notes, index | Validation report / Topic Note / CONNECTION_INDEX / Evolution Summary |
 
 ## Quick look
 
 ```
 Input: three articles on AI agent architecture
-  → loom intake         → Material List (3 sources)
-  → loom-research       → 3 Raw Captures + 3 Source Briefs + 1 Synthesis Pack
-  → loom-write          → Draft article + 2 Topic Notes + Index update
+  → deep-read           → 3 Source Briefs + 1 Synthesis Pack + 1 Research Article
+  → loom-maintain (opt) → 2 Topic Notes + Index update
 ```
 
 <details>
@@ -84,33 +92,26 @@ designing the right boundary between model reasoning and tool execution.
 ```
 </details>
 
-## Chaining
-
-- **Research to article**: `loom` (intake) → `loom-research` (capture + read + synthesis) → `loom-write` (draft + topic + index)
-- **Research only**: `loom` → `loom-research`
-- **Write from existing research**: `loom-write`
-- **Vault governance**: `loom-maintain`
-
 ## Install
 
 ```bash
 npx skills add KKenny0/loom
 ```
 
-For local development, copy `loom`, `loom-research`, `loom-write`, `loom-maintain` directories into your skills directory.
+For local development, copy `deep-read` and `loom-maintain` directories into your skills directory.
 
 ## Vault Contract
 
-- Raw Capture, Daily Note, Source Brief, Synthesis Pack, Topic Note, Draft, and Final are separate artifacts. They cannot overwrite each other.
+- Raw Capture, Source Brief, Synthesis Pack, Research Article, and Topic Note are separate artifacts. They cannot overwrite each other.
 - Every Material List `raw_path` points to a real source, local file, original URL, or explicit placeholder.
-- Draft and Final may use personal voice, but must not rewrite upstream evidence.
+- Research Articles may use personal voice, but must not rewrite upstream evidence.
 - Topic Notes use a calm vault voice, not article rhetoric or platform tone.
 - Scanning, validation, and indexing live in `shared/scripts` and default to dry-run or read-only.
 
 ## Validate
 
 ```bash
-for d in loom loom-research loom-write loom-maintain; do
+for d in deep-read loom-maintain; do
   python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py "$PWD/$d"
 done
 ```
@@ -125,20 +126,23 @@ python3 shared/scripts/build_indexes.py <vault-path>
 
 ```text
 loom-skills/
-├── loom/
-├── loom-research/
+├── deep-read/
 │   └── references/
-│       └── reading-variants.md  # reading methodology variants
-├── loom-write/
+│       ├── reading-variants.md   # reading methodology variants
+│       └── schemas.md
 ├── loom-maintain/
+│   ├── scripts/
+│   └── references/
+│       └── schemas.md
 └── shared/
     ├── references/
-    │   ├── schemas.md            # all artifact schemas
-    │   └── writing-pipeline.md   # pipeline reference
+    │   └── schemas.md             # canonical artifact schemas
     └── scripts/
+        ├── scan_vault.py
+        ├── validate_vault.py
+        ├── vault_utils.py
+        └── build_indexes.py
 ```
-
-Loom is for long-lived knowledge vaults, not a content packaging toolbox. All core reading, analysis, and writing patterns are embedded directly into `loom-research` and `loom-write` — no runtime companion skill dependencies required.
 
 ## Acknowledgments
 

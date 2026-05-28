@@ -20,11 +20,11 @@ shared/
 
 Each Loom skill maintains its own copy of the shared files it needs:
 
-| Shared File | loom | loom-research | loom-write | loom-maintain |
-|-------------|------|---------------|------------|---------------|
-| references/schemas.md | copy | copy | copy | copy |
-| references/reading-variants.md | — | copy (canonical) | — | — |
-| scripts/*.py | — | — | build_indexes.py | copy (all) |
+| Shared File | deep-read | loom-maintain |
+|-------------|-----------|---------------|
+| references/schemas.md | copy | copy |
+| references/reading-variants.md | copy (canonical) | — |
+| scripts/*.py | — | copy (all) |
 
 **Edit here first**, then run the sync script to propagate changes:
 
