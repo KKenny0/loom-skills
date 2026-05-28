@@ -31,12 +31,13 @@ Loom 不适合这些场景：
 
 ## 架构
 
-两个研究技能，三个思辨镜头，一个 vault 工具。每个技能独立可用，不依赖 vault。
+三个研究技能，三个思辨镜头，一个 vault 工具。每个技能独立可用，不依赖 vault。
 
 ```
 研究层（素材 → 完整文章，各自独立可用）:
   deep-read       论文、文章、报告 → 研究文章           [本 repo]
   source-dive     技术源码 → 深度分析文章              [KKenny0/source-dive]
+  survey          领域名/方向 → 结构化领域地图           [本 repo]
 
 思辨镜头（对 Loom 产物或原始输入施加思考）:
   excavate       假设考古 — 挖到地基下面
@@ -52,6 +53,7 @@ Loom 不适合这些场景：
 | Skill | 何时使用 | 产物 |
 | --- | --- | --- |
 | `deep-read` | 深度阅读论文、文章、报告、访谈 → 研究文章 | Raw Capture + Source Brief + Synthesis Pack + 研究文章 |
+| `survey` | 想了解某个领域的全貌、快速进入新方向、找综述式领域地图时 | 领域地图（研究纲领 → 争议 → 演化 → 开放问题 → 入门推荐） |
 | `excavate` | 想搞清楚一个主张为什么成立、或挖掘隐藏前提时 | 挖掘报告（假设考古） |
 | `debate` | 遇到分歧或对立立场、想要真正的综合而非和稀泥时 | 辩证记录（扬弃式辩证推理） |
 | `forge` | 想从多个领域的素材中碰撞出新概念或新框架时 | 锻造图（原子概念 → 跨域映射 → 新想法） |
@@ -66,6 +68,11 @@ Input: three articles on AI agent architecture
   → debate (opt)        → 冲突发现的辩证综合
   → forge (opt)         → 跨 Topic Note 的概念锻造图
   → loom-maintain (opt) → 2 Topic Notes + Index update
+
+Input: a new research direction
+  → survey              → 领域地图（纲领、争议、演化、开放问题、入门推荐）
+  → deep-read (opt)     → 深读入口推荐中的关键文献
+  → excavate (opt)      → 挖掘某个纲领的核心假设
 ```
 
 <details>
@@ -98,7 +105,7 @@ designing the right boundary between model reasoning and tool execution.
 npx skills add KKenny0/loom
 ```
 
-本地开发时，把 `deep-read`、`excavate`、`debate`、`forge` 和 `loom-maintain` 目录复制到 skills 目录。
+本地开发时，把 `deep-read`、`survey`、`excavate`、`debate`、`forge` 和 `loom-maintain` 目录复制到 skills 目录。
 
 ## 快速开始
 
@@ -135,7 +142,7 @@ npx skills add KKenny0/loom
 ## 校验
 
 ```bash
-for d in deep-read loom-maintain excavate debate forge; do
+for d in deep-read loom-maintain survey excavate debate forge; do
   python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py "$PWD/$d"
 done
 ```
@@ -155,6 +162,13 @@ loom-skills/
 ├── deep-read/
 │   └── references/
 │       ├── reading-variants.md   # 阅读方法论变体
+│       └── schemas.md
+├── survey/
+│   ├── Workflows/
+│   │   ├── 01-scout.md
+│   │   ├── 02-map.md
+│   │   └── 03-compose.md
+│   └── references/
 │       └── schemas.md
 ├── excavate/
 │   └── references/
