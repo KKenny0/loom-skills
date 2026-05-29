@@ -102,7 +102,11 @@ designing the right boundary between model reasoning and tool execution.
 ## 安装
 
 ```bash
-npx skills add KKenny0/loom
+# 安装全部 skills
+npx skills add KKenny0/loom-skills -a claude-code -g -y
+
+# 单独安装某个 skill
+npx skills add KKenny0/loom-skills --skill deep-read -a claude-code -g -y
 ```
 
 本地开发时，把 `deep-read`、`survey`、`excavate`、`debate`、`forge` 和 `loom-maintain` 目录复制到 skills 目录。
