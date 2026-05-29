@@ -125,7 +125,7 @@ Legacy: preserve `source` field if present; preserve unknown frontmatter fields 
 
 ## Source Brief
 
-Result of deep-reading one source.
+Result of deep-reading one source. Canonical schema — all Source Briefs follow this structure.
 
 ```markdown
 # Source Brief — [Source Title]
@@ -133,33 +133,36 @@ Result of deep-reading one source.
 source_id: S1
 raw_path: [raw path]
 brief_date: YYYY-MM-DD
+type: {论文/文章/访谈/...}
 
-## Core Conclusion
-[The source's main conclusion.]
+## 核心观点
+{一句话}
 
-## Source Claims
-- [Claim made by the source]
+## 骨架 [骨]
+{核心论证/观点的段落}
 
-## Key Evidence
-- [Evidence supporting claims]
+## 证据 [肌]
+{支撑论证的证据、数据、例子}
 
-## Argument Path
-1. [How the source gets from premise to conclusion]
+## 问题节
+**亲历**: {具体场景/例子}
+**旧路**: {之前的做法，为什么不work}
+**新口**: {素材作者的新入口}
 
-## Limits
-- [Scope, assumptions, caveats, missing evidence]
+## 关键引述
+- {值得直接引用的原文句子}
 
-## Quotable Lines
-- "[Short quote or paraphrasable expression]" — [context]
+## 争议与张力
+- {与其他来源的冲突或素材内部的张力}
 
-## Disputes / Tensions
-- [Internal tension or conflict with other known sources]
+## 待验证论断
+- {需要进一步确认的论断}
 
-## Claims To Verify
-- [High-impact claim needing verification]
+## 不确定处
+- {素材本身含糊或自相矛盾的地方}
 ```
 
-Rules: keep source claims separate from your thesis. Preserve uncertainty. One source per brief.
+Rules: keep source claims separate from your thesis. Preserve uncertainty. One source per brief. 骨/肌标注帮助后续 Synthesize 和 Compose 快速定位素材核心。非论证型素材（访谈、报告）的问题节退化为：现象描述 → 背景补充 → 核心发现。
 
 ---
 
