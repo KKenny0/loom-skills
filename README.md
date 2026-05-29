@@ -1,8 +1,6 @@
 <p align="center">
-  <img src="assets/loom-logo-transparent.png" alt="Loom logo" width="180">
+  <img src="assets/loom-hero.png" alt="Loom — 研究工坊" width="960">
 </p>
-
-<h1 align="center">Loom</h1>
 
 <p align="center">把散落的来源，织成能看出"哪里站得住、哪里站不住"的研究。</p>
 

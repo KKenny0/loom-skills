@@ -1,8 +1,6 @@
 <p align="center">
-  <img src="assets/loom-logo-transparent.png" alt="Loom logo" width="180">
+  <img src="assets/loom-hero.png" alt="Loom — Research Workshop" width="960">
 </p>
-
-<h1 align="center">Loom</h1>
 
 <p align="center">Weave scattered sources into research that tells you what holds and what doesn't.</p>
 
