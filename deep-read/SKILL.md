@@ -90,6 +90,7 @@ Phase 1: Capture       Phase 2: Read          Phase 3: Synthesize     Phase 4: C
 
 ## 关键约束
 
+- **没有素材就不开始**：用户没有提供任何素材（URL/PDF/文件/文本）时，停下来请用户提供素材。不要自行搜索主题、不要用通用知识写文章。这是流水线的入口门控，不是可选建议。详见 [01-capture.md](Workflows/01-capture.md) Gate 部分。
 - **永远走全流程**：不提供 quick/standard 切换。deep-read 的价值就在全流程输出。
 - **素材类型边界**：代码/技术项目 → source-dive；非技术素材 → deep-read。
 - **中文母语**：最终输出必须是自然的中文写作，不能有 AI 味。
@@ -113,5 +114,5 @@ Phase 1: Capture       Phase 2: Read          Phase 3: Synthesize     Phase 4: C
 | 素材 URL 404 或付费墙 | 尝试 web cache；如果无法获取，告诉用户，不编造内容 |
 | 素材不是中文 | Source Brief 用中文写，保留原文关键术语；Compose 用中文写 |
 | 素材过长超出上下文 | 用 background agent 分段精读，产出 Source Brief 后从 Source Brief 写作 |
-| 用户说"帮我分析一下"但没给素材 | 问用户要素材，不凭空写 |
+| 用户说"帮我分析一下"但没给素材 | 停下来请用户提供素材，不自行搜索、不凭空写（见 Phase 1 Gate） |
 | 用户只想了解内容不想要文章 | 这不是 deep-read 的场景，直接在对话中讨论即可 |
