@@ -1,0 +1,191 @@
+{
+  "title": "Loom Cross-Skill Benchmark — Iteration 1",
+  "timestamp": "2026-06-03",
+  "skills": [
+    {
+      "skill_name": "deep-read",
+      "with_skill": {
+        "passed": 37,
+        "total": 37,
+        "pass_rate": 1.000,
+        "mean_duration_seconds": 575.0,
+        "evals": [
+          { "eval_id": 1, "eval_name": "single-paper-analysis", "passed": 12, "total": 12, "pass_rate": 1.0 },
+          { "eval_id": 2, "eval_name": "multi-source-synthesis", "passed": 11, "total": 11, "pass_rate": 1.0 },
+          { "eval_id": 3, "eval_name": "non-ai-interview", "passed": 10, "total": 10, "pass_rate": 1.0 },
+          { "eval_id": 4, "eval_name": "edge-case-no-sources", "passed": 4, "total": 4, "pass_rate": 1.0 }
+        ]
+      },
+      "without_skill": {
+        "passed": 28,
+        "total": 37,
+        "pass_rate": 0.757,
+        "mean_duration_seconds": 384.0,
+        "evals": [
+          { "eval_id": 1, "eval_name": "single-paper-analysis", "passed": 10, "total": 12, "pass_rate": 0.833 },
+          { "eval_id": 2, "eval_name": "multi-source-synthesis", "passed": 10, "total": 11, "pass_rate": 0.909 },
+          { "eval_id": 3, "eval_name": "non-ai-interview", "passed": 8, "total": 10, "pass_rate": 0.80 },
+          { "eval_id": 4, "eval_name": "edge-case-no-sources", "passed": 0, "total": 4, "pass_rate": 0.0 }
+        ]
+      },
+      "delta_pass_rate": 0.243
+    },
+    {
+      "skill_name": "debate",
+      "with_skill": {
+        "passed": 33,
+        "total": 33,
+        "pass_rate": 1.000,
+        "mean_duration_seconds": 389.5,
+        "evals": [
+          { "eval_id": 1, "eval_name": "concrete-claim-debate", "passed": 12, "total": 12, "pass_rate": 1.0 },
+          { "eval_id": 2, "eval_name": "non-ai-value-debate", "passed": 10, "total": 10, "pass_rate": 1.0 },
+          { "eval_id": 3, "eval_name": "text-based-evidence-debate", "passed": 8, "total": 8, "pass_rate": 1.0 },
+          { "eval_id": 4, "eval_name": "edge-case-vague-thesis", "passed": 3, "total": 3, "pass_rate": 1.0 }
+        ]
+      },
+      "without_skill": {
+        "passed": 17,
+        "total": 33,
+        "pass_rate": 0.515,
+        "mean_duration_seconds": 275.5,
+        "evals": [
+          { "eval_id": 1, "eval_name": "concrete-claim-debate", "passed": 8, "total": 12, "pass_rate": 0.667 },
+          { "eval_id": 2, "eval_name": "non-ai-value-debate", "passed": 4, "total": 10, "pass_rate": 0.40 },
+          { "eval_id": 3, "eval_name": "text-based-evidence-debate", "passed": 5, "total": 8, "pass_rate": 0.625 },
+          { "eval_id": 4, "eval_name": "edge-case-vague-thesis", "passed": 0, "total": 3, "pass_rate": 0.0 }
+        ]
+      },
+      "delta_pass_rate": 0.485
+    },
+    {
+      "skill_name": "forge",
+      "with_skill": {
+        "passed": 31,
+        "total": 35,
+        "pass_rate": 0.886,
+        "mean_tokens": 35543,
+        "mean_duration_seconds": 142.6,
+        "evals": [
+          { "eval_id": 1, "eval_name": "cross-domain-structural-similarity", "passed": 10, "total": 12, "pass_rate": 0.833 },
+          { "eval_id": 2, "eval_name": "non-ai-cross-domain", "passed": 9, "total": 10, "pass_rate": 0.900 },
+          { "eval_id": 3, "eval_name": "hard-pair-forge", "passed": 8, "total": 9, "pass_rate": 0.889 },
+          { "eval_id": 4, "eval_name": "edge-case-single-source", "passed": 4, "total": 4, "pass_rate": 1.0 }
+        ]
+      },
+      "without_skill": {
+        "passed": 25,
+        "total": 35,
+        "pass_rate": 0.714,
+        "mean_tokens": 30882,
+        "mean_duration_seconds": 189.7,
+        "evals": [
+          { "eval_id": 1, "eval_name": "cross-domain-structural-similarity", "passed": 6, "total": 12, "pass_rate": 0.500 },
+          { "eval_id": 2, "eval_name": "non-ai-cross-domain", "passed": 9, "total": 10, "pass_rate": 0.900 },
+          { "eval_id": 3, "eval_name": "hard-pair-forge", "passed": 7, "total": 9, "pass_rate": 0.778 },
+          { "eval_id": 4, "eval_name": "edge-case-single-source", "passed": 3, "total": 4, "pass_rate": 0.750 }
+        ]
+      },
+      "delta_pass_rate": 0.171
+    },
+    {
+      "skill_name": "excavate",
+      "with_skill": {
+        "passed": 39,
+        "total": 39,
+        "pass_rate": 1.000,
+        "mean_tokens": 3208,
+        "mean_duration_seconds": 43.3,
+        "evals": [
+          { "eval_id": 1, "eval_name": "non-ai-common-claim", "passed": 13, "total": 13, "pass_rate": 1.0 },
+          { "eval_id": 2, "eval_name": "academic-analogy-excavation", "passed": 10, "total": 10, "pass_rate": 1.0 },
+          { "eval_id": 3, "eval_name": "text-based-social-science", "passed": 10, "total": 10, "pass_rate": 1.0 },
+          { "eval_id": 4, "eval_name": "edge-case-pure-fact", "passed": 6, "total": 6, "pass_rate": 1.0 }
+        ]
+      },
+      "without_skill": {
+        "passed": 13,
+        "total": 39,
+        "pass_rate": 0.333,
+        "mean_tokens": 1643,
+        "mean_duration_seconds": 35.8,
+        "evals": [
+          { "eval_id": 1, "eval_name": "non-ai-common-claim", "passed": 2, "total": 13, "pass_rate": 0.154 },
+          { "eval_id": 2, "eval_name": "academic-analogy-excavation", "passed": 4, "total": 10, "pass_rate": 0.400 },
+          { "eval_id": 3, "eval_name": "text-based-social-science", "passed": 4, "total": 10, "pass_rate": 0.400 },
+          { "eval_id": 4, "eval_name": "edge-case-pure-fact", "passed": 3, "total": 6, "pass_rate": 0.500 }
+        ]
+      },
+      "delta_pass_rate": 0.667
+    },
+    {
+      "skill_name": "survey",
+      "with_skill": {
+        "passed": 37,
+        "total": 37,
+        "pass_rate": 1.000,
+        "mean_tokens": 33988,
+        "mean_duration_seconds": 146.3,
+        "evals": [
+          { "eval_id": 1, "eval_name": "non-ai-established-domain", "passed": 13, "total": 13, "pass_rate": 1.0 },
+          { "eval_id": 2, "eval_name": "ai-agent-emerging-field", "passed": 10, "total": 10, "pass_rate": 1.0 },
+          { "eval_id": 3, "eval_name": "non-ai-narrow-comparison", "passed": 10, "total": 10, "pass_rate": 1.0 },
+          { "eval_id": 4, "eval_name": "edge-case-domain-too-broad", "passed": 4, "total": 4, "pass_rate": 1.0 }
+        ]
+      },
+      "without_skill": {
+        "passed": 21,
+        "total": 37,
+        "pass_rate": 0.568,
+        "mean_tokens": 32825,
+        "mean_duration_seconds": 167.5,
+        "evals": [
+          { "eval_id": 1, "eval_name": "non-ai-established-domain", "passed": 5, "total": 13, "pass_rate": 0.385 },
+          { "eval_id": 2, "eval_name": "ai-agent-emerging-field", "passed": 7, "total": 10, "pass_rate": 0.700 },
+          { "eval_id": 3, "eval_name": "non-ai-narrow-compression", "passed": 7, "total": 10, "pass_rate": 0.700 },
+          { "eval_id": 4, "eval_name": "edge-case-domain-too-broad", "passed": 2, "total": 4, "pass_rate": 0.500 }
+        ]
+      },
+      "delta_pass_rate": 0.432
+    },
+    {
+      "skill_name": "source-dive",
+      "with_skill": {
+        "passed": 33,
+        "total": 33,
+        "pass_rate": 1.000,
+        "evals": [
+          { "eval_id": 1, "eval_name": "single-repo-analysis", "passed": 10, "total": 10, "pass_rate": 1.0 },
+          { "eval_id": 2, "eval_name": "multi-source-synthesis", "passed": 10, "total": 10, "pass_rate": 1.0 },
+          { "eval_id": 3, "eval_name": "non-github-analysis", "passed": 10, "total": 10, "pass_rate": 1.0 },
+          { "eval_id": 4, "eval_name": "edge-case-no-topic", "passed": 3, "total": 3, "pass_rate": 1.0 }
+        ]
+      },
+      "without_skill": {
+        "passed": 18,
+        "total": 33,
+        "pass_rate": 0.545,
+        "evals": [
+          { "eval_id": 1, "eval_name": "single-repo-analysis", "passed": 4, "total": 10, "pass_rate": 0.400 },
+          { "eval_id": 2, "eval_name": "multi-source-synthesis", "passed": 5, "total": 10, "pass_rate": 0.500 },
+          { "eval_id": 3, "eval_name": "non-github-analysis", "passed": 6, "total": 10, "pass_rate": 0.600 },
+          { "eval_id": 4, "eval_name": "edge-case-no-topic", "passed": 3, "total": 3, "pass_rate": 1.0 }
+        ]
+      },
+      "delta_pass_rate": 0.455
+    }
+  ],
+  "aggregate": {
+    "with_skill": {
+      "total_passed": 210,
+      "total_assertions": 214,
+      "pass_rate": 0.981
+    },
+    "without_skill": {
+      "total_passed": 122,
+      "total_assertions": 214,
+      "pass_rate": 0.570
+    },
+    "delta_pass_rate": 0.411
+  }
+}
