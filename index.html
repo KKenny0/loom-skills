@@ -72,8 +72,24 @@
     }
 
     /* ── Hero ── */
-    .hero { width: 100%; background: var(--bg); display: flex; justify-content: center; }
-    .hero-img { max-width: 960px; width: 100%; height: auto; display: block; image-rendering: crisp-edges; }
+    .hero {
+      width: 100%;
+      background: var(--bg);
+    }
+    .hero-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      display: flex;
+      justify-content: center;
+    }
+    .hero-img {
+      max-width: 960px;
+      width: 100%;
+      height: auto;
+      display: block;
+      image-rendering: crisp-edges;
+    }
 
     /* ── Sections ── */
     .section {
@@ -365,7 +381,9 @@
 
   <!-- Hero -->
   <header class="hero">
-    <img src="assets/loom-hero.png" alt="Loom — 研究工坊" class="hero-img" width="1536" height="1024">
+    <div class="hero-inner">
+      <img src="assets/loom-hero.png" alt="Loom — 研究工坊" class="hero-img" width="1536" height="1024">
+    </div>
   </header>
 
   <!-- Tagline -->
