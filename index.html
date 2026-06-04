@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loom — 研究工坊 | Research Workshop for Claude Code</title>
+  <meta name="description" content="Structured research skills for Claude Code. Read sources, survey domains, excavate assumptions, debate claims, forge new ideas.">
+  <meta property="og:title" content="Loom — Research Workshop">
+  <meta property="og:description" content="Structured research skills for Claude Code. Six skills for reading, surveying, debating, excavating assumptions, and forging new ideas.">
+  <meta property="og:image" content="assets/loom-hero.png">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ── Tokens ── */
+    :root {
+      --bg: oklch(0.12 0.01 80);
+      --surface: oklch(0.16 0.01 80);
+      --ink: oklch(0.90 0.005 80);
+      --ink-muted: oklch(0.55 0.015 80);
+      --accent: oklch(0.68 0.13 75);
+      --accent-dim: oklch(0.45 0.06 75);
+      --border: oklch(0.20 0.01 80);
+      --font-body: 'Figtree', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Cascadia Code', monospace;
+      --max-w: 72rem;
+      --read-w: 52rem;
+      --gutter: clamp(1.25rem, 4vw, 3rem);
+      --section-gap: clamp(4rem, 8vh, 7rem);
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      font-size: 1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: var(--accent); text-decoration: underline; text-underline-offset: 0.15em; }
+    a:hover { color: var(--ink); }
+    code, pre { font-family: var(--font-mono); }
+
+    /* ── Scroll reveal ── */
+    [data-reveal] {
+      opacity: 0;
+      transition: opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+                  transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    [data-reveal="up"] { transform: translateY(28px); }
+    [data-reveal="left"] { transform: translateX(-20px); }
+    [data-reveal="fade"] { transform: none; }
+    [data-reveal].visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Stagger children inside a revealed container */
+    [data-reveal-stagger] > * {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+    [data-reveal-stagger].stagger-visible > * {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── Hero ── */
+    .hero { width: 100%; background: var(--bg); }
+    .hero-img { width: 100%; max-height: 80vh; object-fit: cover; display: block; }
+
+    /* ── Sections ── */
+    .section {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      margin-bottom: var(--section-gap);
+    }
+    .section-label {
+      font-size: clamp(0.875rem, 1.5vw, 1rem);
+      font-weight: 500;
+      color: var(--ink-muted);
+      margin-bottom: 1.5rem;
+    }
+    .section-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--ink-muted);
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── Intro (tagline) ── */
+    .intro {
+      max-width: var(--read-w);
+      margin: 0 auto;
+      padding: var(--section-gap) var(--gutter) 0;
+      margin-bottom: var(--section-gap);
+    }
+    .intro .tagline-zh {
+      font-size: clamp(1.375rem, 2.5vw, 1.875rem);
+      font-weight: 600;
+      line-height: 1.4;
+      text-wrap: balance;
+      margin-bottom: 0.75rem;
+    }
+    .intro .tagline-en {
+      font-size: clamp(1rem, 1.75vw, 1.25rem);
+      color: var(--ink-muted);
+      line-height: 1.5;
+      text-wrap: balance;
+    }
+
+    /* ── English text ── */
+    .text-en { color: var(--ink-muted); font-size: 0.9375rem; }
+
+    /* ── Why ── */
+    .why-content { max-width: var(--read-w); }
+    .why-content p { margin-bottom: 1rem; text-wrap: pretty; }
+
+    /* ── Skills ── */
+    .skill-group { margin-bottom: 3rem; }
+    .group-label {
+      font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .group-label-en {
+      font-weight: 400;
+      color: var(--ink-muted);
+      font-size: 0.875rem;
+      margin-left: 0.375rem;
+    }
+    .skill-row {
+      display: flex;
+      gap: clamp(1rem, 3vw, 2rem);
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .skill-row:hover { background: oklch(0.14 0.012 80); }
+    .skill-row:last-child { border-bottom: none; }
+    .skill-name {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--accent);
+      white-space: nowrap;
+      padding-top: 0.2rem;
+      min-width: clamp(7rem, 12vw, 10rem);
+      flex-shrink: 0;
+    }
+    .skill-body { flex: 1; }
+    .skill-body p { margin-bottom: 0.25rem; line-height: 1.5; }
+    .skill-body p:first-child { font-weight: 500; }
+    .skill-io {
+      font-size: 0.8125rem;
+      color: var(--ink-muted);
+      font-family: var(--font-mono);
+      margin-top: 0.25rem;
+    }
+    .skill-hint {
+      font-size: 0.6875rem;
+      color: var(--ink-muted);
+      margin-top: 0.125rem;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .skill-row:hover .skill-hint { opacity: 1; }
+    .skill-row.active .skill-hint { opacity: 0; }
+
+    /* Expandable pipeline */
+    .skill-expand {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                  opacity 0.3s ease 0.05s;
+    }
+    .skill-row.active .skill-expand {
+      max-height: 60px;
+      opacity: 1;
+    }
+    .skill-pipeline {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      margin-top: 0.625rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .skill-pipeline .stage {
+      color: var(--accent);
+      padding: 0.125rem 0.5rem;
+      background: oklch(0.14 0.02 80);
+      border-radius: 4px;
+    }
+    .skill-pipeline .pipe-arrow {
+      color: var(--ink-muted);
+      font-size: 0.625rem;
+      margin: 0 0.125rem;
+    }
+
+    .skill-footnote {
+      color: var(--ink-muted);
+      font-size: 0.875rem;
+      padding-top: 0.75rem;
+    }
+    .skill-footnote code { color: var(--accent-dim); font-size: 0.8125rem; }
+
+    /* ── Benchmark ── */
+    .bench-context {
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+      margin-bottom: 2rem;
+    }
+    .bench-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9375rem;
+      margin-bottom: 2.5rem;
+    }
+    .bench-table th {
+      text-align: left;
+      font-weight: 500;
+      color: var(--ink-muted);
+      font-size: 0.8125rem;
+      padding: 0.625rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .bench-table th:not(:first-child) { text-align: right; }
+    .bench-table td {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid oklch(0.15 0.008 80);
+    }
+    .bench-table td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+    .bench-table td:first-child code {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--accent);
+    }
+    .bench-table .delta { color: var(--accent); font-weight: 600; }
+    .bench-table tfoot td {
+      border-top: 1px solid oklch(0.25 0.01 80);
+      border-bottom: none;
+      font-weight: 600;
+      padding-top: 1rem;
+    }
+    .bench-bars { display: flex; flex-direction: column; gap: 0.5rem; max-width: var(--read-w); }
+    .bench-bar-row { display: flex; align-items: center; gap: 1rem; }
+    .bench-bar-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      min-width: 8.5rem;
+      text-align: right;
+    }
+    .bench-bar-track {
+      flex: 1;
+      height: 5px;
+      background: oklch(0.20 0.01 80);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .bench-bar-fill {
+      height: 100%;
+      width: 0;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .bench-bar-fill.visible { width: var(--w); }
+    .bench-bar-value {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      min-width: 3.5rem;
+    }
+
+    /* ── Install ── */
+    .install pre {
+      background: var(--surface);
+      padding: 1.25rem 1.5rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin-bottom: 1rem;
+      max-width: var(--read-w);
+      position: relative;
+      cursor: pointer;
+      border-left: 3px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+    .install pre:hover {
+      border-left-color: var(--accent);
+    }
+    .install code { font-size: 0.9375rem; color: var(--ink); }
+    .install-note { font-size: 0.875rem; color: var(--ink-muted); }
+    .install-note + .install-note { margin-top: 0.25rem; }
+
+    /* Copy toast */
+    .copy-toast {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      pointer-events: none;
+    }
+    .copy-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: var(--section-gap) var(--gutter);
+      color: var(--ink-muted);
+      font-size: 0.875rem;
+      border-top: 1px solid oklch(0.18 0.01 80);
+      margin-top: var(--section-gap);
+    }
+    .footer a { color: var(--ink-muted); text-decoration: none; }
+    .footer a:hover { color: var(--accent); }
+    .footer-sep { margin: 0 0.5rem; }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      [data-reveal] { opacity: 1; transform: none; transition: none; }
+      [data-reveal-stagger] > * { opacity: 1; transform: none; transition: none; }
+      .bench-bar-fill { width: var(--w) !important; transition: none; }
+      .skill-expand { max-height: none; opacity: 1; transition: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      .skill-row { flex-direction: column; gap: 0.375rem; }
+      .skill-name { min-width: auto; }
+      .bench-bar-label { min-width: 6rem; font-size: 0.6875rem; }
+      .bench-table { font-size: 0.875rem; }
+      .skill-hint { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <header class="hero">
+    <img src="assets/loom-hero.png" alt="Loom — 研究工坊" class="hero-img" width="1536" height="1024">
+  </header>
+
+  <!-- Tagline -->
+  <section class="intro" aria-label="Tagline" data-reveal="up">
+    <p class="tagline-zh" lang="zh-CN">把散落的来源，织成能看出哪里站得住、哪里站不住的研究。</p>
+    <p class="tagline-en" lang="en">Weave scattered sources into research that shows where the foundations are solid and where they're not.</p>
+  </section>
+
+  <main>
+
+    <!-- Why -->
+    <section class="section" aria-labelledby="why-heading" data-reveal="left">
+      <h2 id="why-heading" class="section-label">为什么 / Why</h2>
+      <div class="why-content" data-reveal-stagger>
+        <p lang="zh-CN">AI 研究一个主题时，会给出流畅、自信的回答。但来源之间有分歧，证据质量参差不齐，有些判断下面只是薄薄一层冰。分歧被抹平，弱主张和强证据听起来一样笃定。你得到一篇读起来很顺的文章，却看不出哪里地基是实的、哪里是虚的。</p>
+        <p lang="zh-CN">Loom 读的是你给的来源，不抹平冲突。它告诉你共识在哪、分歧在哪、哪些判断只靠弱证据撑着。三个月后回头看，每个判断仍然能追溯到出处。</p>
+        <p class="text-en" lang="en">When AI researches a topic, it gives you a fluent, confident answer. But real sources disagree, evidence quality varies, and some claims rest on thin ice. Disagreements get smoothed over. Weak claims sound as certain as strong evidence. You get a readable article, but you can't tell which parts are solid and which aren't.</p>
+        <p class="text-en" lang="en">Loom reads your sources and preserves the conflicts. It shows where sources agree, where they diverge, and which claims are only thinly supported. Three months later, every judgment still traces back to its source.</p>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="section" aria-labelledby="skills-heading" data-reveal="up">
+      <h2 id="skills-heading" class="section-title" lang="zh-CN">六个技能</h2>
+      <p class="section-subtitle text-en" lang="en">Six skills for research and thinking</p>
+
+      <!-- Research -->
+      <div class="skill-group">
+        <h3 class="group-label" lang="zh-CN">研究层<span class="group-label-en" lang="en">Research</span></h3>
+
+        <div class="skill-row" role="button" tabindex="0" aria-expanded="false">
+          <code class="skill-name">deep-read</code>
+          <div class="skill-body">
+            <p lang="zh-CN">深度阅读论文、文章、报告，输出扎根来源的研究文章与证据地图</p>
+            <p class="text-en" lang="en">Deep-read papers, articles, reports into source-grounded research articles with evidence maps</p>
+            <p class="skill-io">论文 / 报告 / 访谈 → 研究文章 + 证据地图</p>
+            <p class="skill-hint">点击展开流程</p>
+            <div class="skill-expand">
+              <div class="skill-pipeline">
+                <span class="stage">捕获</span><span class="pipe-arrow">→</span>
+                <span class="stage">精读</span><span class="pipe-arrow">→</span>
+                <span class="stage">综合</span><span class="pipe-arrow">→</span>
+                <span class="stage">撰写</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-row" role="button" tabindex="0" aria-expanded="false">
+          <code class="skill-name">survey</code>
+          <div class="skill-body">
+            <p lang="zh-CN">从一个领域名出发，产出研究纲领、核心争议、演化脉络与入门推荐</p>
+            <p class="text-en" lang="en">Map a domain into research programs, disputes, evolution, and reading lists</p>
+            <p class="skill-io">领域名 / 研究方向 → 领域地图</p>
+            <p class="skill-hint">点击展开流程</p>
+            <div class="skill-expand">
+              <div class="skill-pipeline">
+                <span class="stage">侦察</span><span class="pipe-arrow">→</span>
+                <span class="stage">测绘</span><span class="pipe-arrow">→</span>
+                <span class="stage">撰述</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-row" role="button" tabindex="0" aria-expanded="false">
+          <code class="skill-name">source-dive</code>
+          <div class="skill-body">
+            <p lang="zh-CN">深入技术项目的源码与文档，输出完整技术深度解析</p>
+            <p class="text-en" lang="en">Dive into technical source code and documentation for deep analysis articles</p>
+            <p class="skill-io">技术项目名 → 深度解析文章</p>
+            <p class="skill-hint">点击展开流程</p>
+            <div class="skill-expand">
+              <div class="skill-pipeline">
+                <span class="stage">发现</span><span class="pipe-arrow">→</span>
+                <span class="stage">分析</span><span class="pipe-arrow">→</span>
+                <span class="stage">撰写</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thinking lenses -->
+      <div class="skill-group">
+        <h3 class="group-label" lang="zh-CN">思辨镜头<span class="group-label-en" lang="en">Thinking lenses</span></h3>
+
+        <div class="skill-row" role="button" tabindex="0" aria-expanded="false">
+          <code class="skill-name">excavate</code>
+          <div class="skill-body">
+            <p lang="zh-CN">挖掘主张下的隐藏假设，评估根基是否扎实</p>
+            <p class="text-en" lang="en">Excavate hidden assumptions beneath claims and evaluate the foundations</p>
+            <p class="skill-io">主张 / Source Brief → 挖掘报告</p>
+            <p class="skill-hint">点击展开流程</p>
+            <div class="skill-expand">
+              <div class="skill-pipeline">
+                <span class="stage">表层主张</span><span class="pipe-arrow">→</span>
+                <span class="stage">推理结构</span><span class="pipe-arrow">→</span>
+                <span class="stage">隐藏假设</span><span class="pipe-arrow">→</span>
+                <span class="stage">根基评级</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-row" role="button" tabindex="0" aria-expanded="false">
+          <code class="skill-name">debate</code>
+          <div class="skill-body">
+            <p lang="zh-CN">扬弃式辩证推理，不是和稀泥，是找到更高层次的综合</p>
+            <p class="text-en" lang="en">Dialectical reasoning that reaches synthesis, not compromise</p>
+            <p class="skill-io">主张 / 争议 → 辩证记录</p>
+            <p class="skill-hint">点击展开流程</p>
+            <div class="skill-expand">
+              <div class="skill-pipeline">
+                <span class="stage">钢铁侠建构</span><span class="pipe-arrow">→</span>
+                <span class="stage">反题</span><span class="pipe-arrow">→</span>
+                <span class="stage">扬弃</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-row" role="button" tabindex="0" aria-expanded="false">
+          <code class="skill-name">forge</code>
+          <div class="skill-body">
+            <p lang="zh-CN">跨域碰撞概念，从不同领域的素材中锻造新框架</p>
+            <p class="text-en" lang="en">Forge new frameworks by colliding concepts from different domains</p>
+            <p class="skill-io">2+ 素材 → 锻造图</p>
+            <p class="skill-hint">点击展开流程</p>
+            <div class="skill-expand">
+              <div class="skill-pipeline">
+                <span class="stage">原子分解</span><span class="pipe-arrow">→</span>
+                <span class="stage">跨域映射</span><span class="pipe-arrow">→</span>
+                <span class="stage">碰撞</span><span class="pipe-arrow">→</span>
+                <span class="stage">锻造产物</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="skill-footnote"><code>loom-maintain</code> <span lang="zh-CN">可选 vault 基础设施</span> <span class="text-en" lang="en">optional vault infrastructure</span></p>
+    </section>
+
+    <!-- Benchmark -->
+    <section class="section" aria-labelledby="bench-heading" data-reveal="fade">
+      <h2 id="bench-heading" class="section-label">实测数据 / Benchmark</h2>
+      <p class="bench-context" lang="zh-CN">跨技能基准测试，迭代 1，214 项断言，6 个技能</p>
+      <p class="bench-context text-en" lang="en">Cross-skill benchmark, iteration 1, 214 assertions, 6 skills</p>
+
+      <table class="bench-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th lang="zh-CN">带技能</th>
+            <th>Baseline</th>
+            <th>Delta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>deep-read</code></td>
+            <td>100%</td>
+            <td>75.7%</td>
+            <td class="delta">+24.3</td>
+          </tr>
+          <tr>
+            <td><code>debate</code></td>
+            <td>100%</td>
+            <td>51.5%</td>
+            <td class="delta">+48.5</td>
+          </tr>
+          <tr>
+            <td><code>excavate</code></td>
+            <td>100%</td>
+            <td>33.3%</td>
+            <td class="delta">+66.7</td>
+          </tr>
+          <tr>
+            <td><code>survey</code></td>
+            <td>100%</td>
+            <td>56.8%</td>
+            <td class="delta">+43.2</td>
+          </tr>
+          <tr>
+            <td><code>source-dive</code></td>
+            <td>100%</td>
+            <td>54.5%</td>
+            <td class="delta">+45.5</td>
+          </tr>
+          <tr>
+            <td><code>forge</code></td>
+            <td>88.6%</td>
+            <td>71.4%</td>
+            <td class="delta">+17.1</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td lang="zh-CN">合计</td>
+            <td>98.1%</td>
+            <td>57.0%</td>
+            <td class="delta">+41.1</td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <div class="bench-bars" id="bench-bars">
+        <div class="bench-bar-row">
+          <span class="bench-bar-label">excavate</span>
+          <div class="bench-bar-track"><div class="bench-bar-fill" style="--w: 95.3%"></div></div>
+          <span class="bench-bar-value">+66.7</span>
+        </div>
+        <div class="bench-bar-row">
+          <span class="bench-bar-label">debate</span>
+          <div class="bench-bar-track"><div class="bench-bar-fill" style="--w: 69.3%"></div></div>
+          <span class="bench-bar-value">+48.5</span>
+        </div>
+        <div class="bench-bar-row">
+          <span class="bench-bar-label">source-dive</span>
+          <div class="bench-bar-track"><div class="bench-bar-fill" style="--w: 65.0%"></div></div>
+          <span class="bench-bar-value">+45.5</span>
+        </div>
+        <div class="bench-bar-row">
+          <span class="bench-bar-label">survey</span>
+          <div class="bench-bar-track"><div class="bench-bar-fill" style="--w: 61.7%"></div></div>
+          <span class="bench-bar-value">+43.2</span>
+        </div>
+        <div class="bench-bar-row">
+          <span class="bench-bar-label">deep-read</span>
+          <div class="bench-bar-track"><div class="bench-bar-fill" style="--w: 34.7%"></div></div>
+          <span class="bench-bar-value">+24.3</span>
+        </div>
+        <div class="bench-bar-row">
+          <span class="bench-bar-label">forge</span>
+          <div class="bench-bar-track"><div class="bench-bar-fill" style="--w: 24.4%"></div></div>
+          <span class="bench-bar-value">+17.1</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Install -->
+    <section class="section install" aria-labelledby="install-heading" data-reveal="left">
+      <h2 id="install-heading" class="section-label">安装 / Install</h2>
+      <pre><code>claude install-skill https://github.com/KKenny0/loom-skills</code><span class="copy-toast">Copied!</span></pre>
+      <p class="install-note" lang="zh-CN">单个 skill 安装请参阅 <a href="https://github.com/KKenny0/loom-skills">README</a></p>
+      <p class="install-note text-en" lang="en">For individual skills, see the <a href="https://github.com/KKenny0/loom-skills">README</a></p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <a href="https://github.com/KKenny0/loom-skills">GitHub</a>
+    <span class="footer-sep">·</span>
+    <span>Built by Kenny Wu</span>
+  </footer>
+
+  <script>
+    // 1. Section scroll reveals
+    const revealEls = document.querySelectorAll('[data-reveal]');
+    const staggerEls = document.querySelectorAll('[data-reveal-stagger]');
+
+    if (revealEls.length && 'IntersectionObserver' in window) {
+      const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach((el) => revealObs.observe(el));
+    } else {
+      revealEls.forEach((el) => el.classList.add('visible'));
+    }
+
+    // Stagger children
+    if (staggerEls.length && 'IntersectionObserver' in window) {
+      const staggerObs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const children = Array.from(entry.target.children);
+            children.forEach((child, i) => {
+              child.style.transitionDelay = `${i * 0.09}s`;
+            });
+            entry.target.classList.add('stagger-visible');
+            staggerObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      staggerEls.forEach((el) => staggerObs.observe(el));
+    } else {
+      staggerEls.forEach((el) => el.classList.add('stagger-visible'));
+    }
+
+    // 2. Skill row expand/collapse
+    document.querySelectorAll('.skill-row').forEach((row) => {
+      const toggle = () => {
+        const wasActive = row.classList.contains('active');
+        // Close all
+        document.querySelectorAll('.skill-row.active').forEach((other) => {
+          other.classList.remove('active');
+          other.setAttribute('aria-expanded', 'false');
+        });
+        // Toggle current
+        if (!wasActive) {
+          row.classList.add('active');
+          row.setAttribute('aria-expanded', 'true');
+        }
+      };
+      row.addEventListener('click', toggle);
+      row.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggle();
+        }
+      });
+    });
+
+    // 3. Copy to clipboard
+    const preBlock = document.querySelector('.install pre');
+    if (preBlock) {
+      preBlock.addEventListener('click', async () => {
+        const code = preBlock.querySelector('code');
+        const text = code ? code.textContent : preBlock.textContent;
+        try {
+          await navigator.clipboard.writeText(text.trim());
+          const toast = preBlock.querySelector('.copy-toast');
+          if (toast) {
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 1500);
+          }
+        } catch (e) { /* clipboard API unavailable */ }
+      });
+    }
+
+    // 4. Benchmark bar animation (existing)
+    const bars = document.querySelectorAll('.bench-bar-fill');
+    if (bars.length && 'IntersectionObserver' in window) {
+      const barObs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Stagger bars
+            const row = entry.target.closest('.bench-bar-row');
+            const allRows = Array.from(document.querySelectorAll('.bench-bar-row'));
+            const idx = allRows.indexOf(row);
+            entry.target.style.transitionDelay = `${idx * 0.06}s`;
+            entry.target.classList.add('visible');
+            barObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      bars.forEach((bar) => barObs.observe(bar));
+    } else {
+      bars.forEach((bar) => bar.classList.add('visible'));
+    }
+  </script>
+
+</body>
+</html>
