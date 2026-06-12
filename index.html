@@ -32,7 +32,7 @@
 
     /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 4rem; }
     body {
       font-family: var(--font-body);
       background: var(--bg);
@@ -71,24 +71,109 @@
       transform: none;
     }
 
+    /* ── Topnav ── */
+    .topnav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: oklch(0.12 0.01 80 / 0.8);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    .topnav.scrolled {
+      border-bottom-color: var(--border);
+      background: oklch(0.12 0.01 80 / 0.95);
+    }
+    .topnav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      height: 3.25rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .topnav-brand {
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: 0.9375rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .topnav-brand:hover { color: var(--ink); }
+    .topnav-links {
+      display: flex;
+      gap: 1.5rem;
+      flex: 1;
+    }
+    .topnav-links a {
+      font-size: 0.8125rem;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .topnav-links a:hover { color: var(--ink); }
+    .topnav-cta {
+      font-size: 0.8125rem;
+      font-family: var(--font-mono);
+      color: var(--bg) !important;
+      background: var(--accent);
+      padding: 0.375rem 1rem;
+      border-radius: 4px;
+      text-decoration: none !important;
+      transition: opacity 0.15s ease;
+    }
+    .topnav-cta:hover { opacity: 0.85; color: var(--bg) !important; }
+
     /* ── Hero ── */
     .hero {
       width: 100%;
       background: var(--bg);
+      margin-bottom: var(--section-gap);
     }
     .hero-inner {
       max-width: var(--max-w);
       margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: flex;
-      justify-content: center;
+      padding: 2.5rem var(--gutter) 0;
+    }
+    .hero-text {
+      max-width: var(--read-w);
+      margin-bottom: 2rem;
+    }
+    .hero-title {
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+    .hero-title-sub {
+      font-weight: 400;
+      color: var(--ink-muted);
+      margin-left: 0.5rem;
+      font-size: 0.85em;
+    }
+    .hero-tagline {
+      font-size: clamp(1.125rem, 2vw, 1.375rem);
+      font-weight: 500;
+      line-height: 1.5;
+      text-wrap: balance;
+      margin-bottom: 0.375rem;
+    }
+    .hero-tagline-en {
+      font-size: clamp(0.875rem, 1.5vw, 1rem);
+      color: var(--ink-muted);
+      line-height: 1.5;
+      text-wrap: balance;
     }
     .hero-img {
-      max-width: 960px;
       width: 100%;
       height: auto;
       display: block;
       image-rendering: crisp-edges;
+      border-radius: 6px;
     }
 
     /* ── Sections ── */
@@ -117,36 +202,47 @@
       margin-bottom: 2.5rem;
     }
 
-    /* ── Intro (tagline) ── */
-    .intro {
-      max-width: var(--read-w);
-      margin: 0 auto;
-      padding: var(--section-gap) var(--gutter) 0;
-      margin-bottom: var(--section-gap);
-    }
-    .intro .tagline-zh {
-      font-size: clamp(1.375rem, 2.5vw, 1.875rem);
-      font-weight: 600;
-      line-height: 1.4;
-      text-wrap: balance;
-      margin-bottom: 0.75rem;
-    }
-    .intro .tagline-en {
-      font-size: clamp(1rem, 1.75vw, 1.25rem);
-      color: var(--ink-muted);
-      line-height: 1.5;
-      text-wrap: balance;
-    }
-
     /* ── English text ── */
     .text-en { color: var(--ink-muted); font-size: 0.9375rem; }
 
-    /* ── Why ── */
-    .why-content { max-width: var(--read-w); }
-    .why-content p { margin-bottom: 1rem; text-wrap: pretty; }
+    /* ── Why (problem / solution grid) ── */
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(1.5rem, 4vw, 3rem);
+      max-width: var(--read-w);
+    }
+    .why-col {
+      padding-left: 1.25rem;
+      border-left: 2px solid var(--border);
+    }
+    .why-col.solution {
+      border-left-color: var(--accent-dim);
+    }
+    .why-col-label {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+      margin-bottom: 0.75rem;
+    }
+    .why-col.solution .why-col-label { color: var(--accent-dim); }
+    .why-col p {
+      margin-bottom: 0.75rem;
+      text-wrap: pretty;
+      line-height: 1.6;
+      font-size: 0.9375rem;
+    }
+    .why-col p:last-child { margin-bottom: 0; }
 
     /* ── Skills ── */
-    .skill-group { margin-bottom: 3rem; }
+    .skill-group {
+      background: oklch(0.14 0.01 80);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
     .group-label {
       font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
       font-weight: 600;
@@ -166,8 +262,9 @@
       border-bottom: 1px solid var(--border);
       cursor: pointer;
       transition: background 0.15s ease;
+      border-radius: 4px;
     }
-    .skill-row:hover { background: oklch(0.14 0.012 80); }
+    .skill-row:hover { background: oklch(0.16 0.012 80); }
     .skill-row:last-child { border-bottom: none; }
     .skill-name {
       font-family: var(--font-mono);
@@ -238,74 +335,63 @@
     }
     .skill-footnote code { color: var(--accent-dim); font-size: 0.8125rem; }
 
-    /* ── Benchmark ── */
+    /* ── Benchmark (full-width section) ── */
+    .bench-section {
+      background: var(--surface);
+      padding: var(--section-gap) 0;
+      margin-bottom: var(--section-gap);
+    }
+    .bench-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
     .bench-context {
       font-size: 0.875rem;
       color: var(--ink-muted);
       margin-bottom: 2rem;
     }
-    .bench-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.9375rem;
-      margin-bottom: 2.5rem;
-    }
-    .bench-table th {
-      text-align: left;
-      font-weight: 500;
-      color: var(--ink-muted);
-      font-size: 0.8125rem;
-      padding: 0.625rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .bench-table th:not(:first-child) { text-align: right; }
-    .bench-table td {
-      padding: 0.75rem 0;
-      border-bottom: 1px solid oklch(0.15 0.008 80);
-    }
-    .bench-table td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
-    .bench-table td:first-child code {
-      font-family: var(--font-mono);
-      font-size: 0.8125rem;
-      color: var(--accent);
-    }
-    .bench-table .delta { color: var(--accent); font-weight: 600; }
-    .bench-table tfoot td {
-      border-top: 1px solid oklch(0.25 0.01 80);
-      border-bottom: none;
-      font-weight: 600;
-      padding-top: 1rem;
-    }
-    .bench-bars { display: flex; flex-direction: column; gap: 0.5rem; max-width: var(--read-w); }
+    .bench-bars { display: flex; flex-direction: column; gap: 0.75rem; max-width: var(--read-w); }
     .bench-bar-row { display: flex; align-items: center; gap: 1rem; }
     .bench-bar-label {
       font-family: var(--font-mono);
       font-size: 0.75rem;
-      color: var(--ink-muted);
+      color: var(--ink);
       min-width: 8.5rem;
       text-align: right;
     }
     .bench-bar-track {
       flex: 1;
-      height: 5px;
-      background: oklch(0.20 0.01 80);
-      border-radius: 2px;
+      height: 8px;
+      background: oklch(0.22 0.01 80);
+      border-radius: 4px;
       overflow: hidden;
     }
     .bench-bar-fill {
       height: 100%;
       width: 0;
       background: var(--accent);
-      border-radius: 2px;
+      border-radius: 4px;
       transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     }
     .bench-bar-fill.visible { width: var(--w); }
     .bench-bar-value {
       font-family: var(--font-mono);
-      font-size: 0.75rem;
+      font-size: 0.8125rem;
       color: var(--accent);
       min-width: 3.5rem;
+      font-weight: 600;
     }
+    .bench-summary {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.9375rem;
+      color: var(--ink-muted);
+      max-width: var(--read-w);
+    }
+    .bench-summary strong { color: var(--accent); font-weight: 600; }
+    .bench-summary .text-en strong { color: var(--accent); }
 
     /* ── Install ── */
     .install pre {
@@ -369,44 +455,64 @@
 
     /* ── Mobile ── */
     @media (max-width: 640px) {
+      .topnav-links { display: none; }
       .skill-row { flex-direction: column; gap: 0.375rem; }
       .skill-name { min-width: auto; }
+      .skill-group { padding: 1rem; }
       .bench-bar-label { min-width: 6rem; font-size: 0.6875rem; }
-      .bench-table { font-size: 0.875rem; }
+      .why-grid { grid-template-columns: 1fr; gap: 2rem; }
       .skill-hint { display: none; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Nav -->
+  <nav class="topnav" id="topnav">
+    <div class="topnav-inner">
+      <a href="#" class="topnav-brand">Loom</a>
+      <div class="topnav-links">
+        <a href="#why">Why</a>
+        <a href="#skills">Skills</a>
+        <a href="#benchmark">Benchmark</a>
+      </div>
+      <a href="#install" class="topnav-cta">Install</a>
+    </div>
+  </nav>
+
   <!-- Hero -->
   <header class="hero">
-    <div class="hero-inner">
+    <div class="hero-inner" data-reveal="up">
+      <div class="hero-text">
+        <h1 class="hero-title">Loom<span class="hero-title-sub">研究工坊</span></h1>
+        <p class="hero-tagline" lang="zh-CN">把散落的来源，织成能看出哪里站得住、哪里站不住的研究。</p>
+        <p class="hero-tagline-en" lang="en">Weave scattered sources into research that shows where the foundations are solid and where they're not.</p>
+      </div>
       <img src="assets/loom-hero.png" alt="Loom — 研究工坊" class="hero-img" width="1536" height="1024">
     </div>
   </header>
 
-  <!-- Tagline -->
-  <section class="intro" aria-label="Tagline" data-reveal="up">
-    <p class="tagline-zh" lang="zh-CN">把散落的来源，织成能看出哪里站得住、哪里站不住的研究。</p>
-    <p class="tagline-en" lang="en">Weave scattered sources into research that shows where the foundations are solid and where they're not.</p>
-  </section>
-
   <main>
 
     <!-- Why -->
-    <section class="section" aria-labelledby="why-heading" data-reveal="left">
+    <section class="section" id="why" aria-labelledby="why-heading" data-reveal="fade">
       <h2 id="why-heading" class="section-label">为什么 / Why</h2>
-      <div class="why-content" data-reveal-stagger>
-        <p lang="zh-CN">AI 研究一个主题时，会给出流畅、自信的回答。但来源之间有分歧，证据质量参差不齐，有些判断下面只是薄薄一层冰。分歧被抹平，弱主张和强证据听起来一样笃定。你得到一篇读起来很顺的文章，却看不出哪里地基是实的、哪里是虚的。</p>
-        <p lang="zh-CN">Loom 读的是你给的来源，不抹平冲突。它告诉你共识在哪、分歧在哪、哪些判断只靠弱证据撑着。三个月后回头看，每个判断仍然能追溯到出处。</p>
-        <p class="text-en" lang="en">When AI researches a topic, it gives you a fluent, confident answer. But real sources disagree, evidence quality varies, and some claims rest on thin ice. Disagreements get smoothed over. Weak claims sound as certain as strong evidence. You get a readable article, but you can't tell which parts are solid and which aren't.</p>
-        <p class="text-en" lang="en">Loom reads your sources and preserves the conflicts. It shows where sources agree, where they diverge, and which claims are only thinly supported. Three months later, every judgment still traces back to its source.</p>
+      <div class="why-grid" data-reveal-stagger>
+        <div class="why-col problem">
+          <div class="why-col-label">Problem</div>
+          <p lang="zh-CN">AI 研究一个主题时，会给出流畅、自信的回答。但来源之间有分歧，证据质量参差不齐，有些判断下面只是薄薄一层冰。分歧被抹平，弱主张和强证据听起来一样笃定。你得到一篇读起来很顺的文章，却看不出哪里地基是实的、哪里是虚的。</p>
+          <p class="text-en" lang="en">When AI researches a topic, it gives you a fluent, confident answer. But real sources disagree, evidence quality varies, and some claims rest on thin ice. Disagreements get smoothed over. Weak claims sound as certain as strong evidence. You get a readable article, but you can't tell which parts are solid and which aren't.</p>
+        </div>
+        <div class="why-col solution">
+          <div class="why-col-label">Loom</div>
+          <p lang="zh-CN">Loom 读的是你给的来源，不抹平冲突。它告诉你共识在哪、分歧在哪、哪些判断只靠弱证据撑着。三个月后回头看，每个判断仍然能追溯到出处。</p>
+          <p class="text-en" lang="en">Loom reads your sources and preserves the conflicts. It shows where sources agree, where they diverge, and which claims are only thinly supported. Three months later, every judgment still traces back to its source.</p>
+        </div>
       </div>
     </section>
 
     <!-- Skills -->
-    <section class="section" aria-labelledby="skills-heading" data-reveal="up">
+    <section class="section" id="skills" aria-labelledby="skills-heading" data-reveal="up">
       <h2 id="skills-heading" class="section-title" lang="zh-CN">六个技能</h2>
       <p class="section-subtitle text-en" lang="en">Six skills for research and thinking</p>
 
@@ -529,104 +635,54 @@
     </section>
 
     <!-- Benchmark -->
-    <section class="section" aria-labelledby="bench-heading" data-reveal="fade">
-      <h2 id="bench-heading" class="section-label">实测数据 / Benchmark</h2>
-      <p class="bench-context" lang="zh-CN">跨技能基准测试，迭代 1，214 项断言，6 个技能</p>
-      <p class="bench-context text-en" lang="en">Cross-skill benchmark, iteration 1, 214 assertions, 6 skills</p>
+    <div class="bench-section" id="benchmark" data-reveal="fade">
+      <div class="bench-inner">
+        <h2 class="section-label">实测数据 / Benchmark</h2>
+        <p class="bench-context" lang="zh-CN">跨技能基准测试，迭代 1，214 项断言，6 个技能</p>
+        <p class="bench-context text-en" lang="en">Cross-skill benchmark, iteration 1, 214 assertions, 6 skills</p>
 
-      <table class="bench-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th lang="zh-CN">带技能</th>
-            <th>Baseline</th>
-            <th>Delta</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>deep-read</code></td>
-            <td>100%</td>
-            <td>75.7%</td>
-            <td class="delta">+24.3</td>
-          </tr>
-          <tr>
-            <td><code>debate</code></td>
-            <td>100%</td>
-            <td>51.5%</td>
-            <td class="delta">+48.5</td>
-          </tr>
-          <tr>
-            <td><code>excavate</code></td>
-            <td>100%</td>
-            <td>33.3%</td>
-            <td class="delta">+66.7</td>
-          </tr>
-          <tr>
-            <td><code>survey</code></td>
-            <td>100%</td>
-            <td>56.8%</td>
-            <td class="delta">+43.2</td>
-          </tr>
-          <tr>
-            <td><code>source-dive</code></td>
-            <td>100%</td>
-            <td>54.5%</td>
-            <td class="delta">+45.5</td>
-          </tr>
-          <tr>
-            <td><code>forge</code></td>
-            <td>88.6%</td>
-            <td>71.4%</td>
-            <td class="delta">+17.1</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td lang="zh-CN">合计</td>
-            <td>98.1%</td>
-            <td>57.0%</td>
-            <td class="delta">+41.1</td>
-          </tr>
-        </tfoot>
-      </table>
+        <div class="bench-bars" id="bench-bars">
+          <div class="bench-bar-row">
+            <span class="bench-bar-label">excavate</span>
+            <div class="bench-bar-track"><div class="bench-bar-fill" style="--w: 95.3%"></div></div>
+            <span class="bench-bar-value">+66.7</span>
+          </div>
+          <div class="bench-bar-row">
+            <span class="bench-bar-label">debate</span>
+            <div class="bench-bar-track"><div class="bench-bar-fill" style="--w: 69.3%"></div></div>
+            <span class="bench-bar-value">+48.5</span>
+          </div>
+          <div class="bench-bar-row">
+            <span class="bench-bar-label">source-dive</span>
+            <div class="bench-bar-track"><div class="bench-bar-fill" style="--w: 65.0%"></div></div>
+            <span class="bench-bar-value">+45.5</span>
+          </div>
+          <div class="bench-bar-row">
+            <span class="bench-bar-label">survey</span>
+            <div class="bench-bar-track"><div class="bench-bar-fill" style="--w: 61.7%"></div></div>
+            <span class="bench-bar-value">+43.2</span>
+          </div>
+          <div class="bench-bar-row">
+            <span class="bench-bar-label">deep-read</span>
+            <div class="bench-bar-track"><div class="bench-bar-fill" style="--w: 34.7%"></div></div>
+            <span class="bench-bar-value">+24.3</span>
+          </div>
+          <div class="bench-bar-row">
+            <span class="bench-bar-label">forge</span>
+            <div class="bench-bar-track"><div class="bench-bar-fill" style="--w: 24.4%"></div></div>
+            <span class="bench-bar-value">+17.1</span>
+          </div>
+        </div>
 
-      <div class="bench-bars" id="bench-bars">
-        <div class="bench-bar-row">
-          <span class="bench-bar-label">excavate</span>
-          <div class="bench-bar-track"><div class="bench-bar-fill" style="--w: 95.3%"></div></div>
-          <span class="bench-bar-value">+66.7</span>
-        </div>
-        <div class="bench-bar-row">
-          <span class="bench-bar-label">debate</span>
-          <div class="bench-bar-track"><div class="bench-bar-fill" style="--w: 69.3%"></div></div>
-          <span class="bench-bar-value">+48.5</span>
-        </div>
-        <div class="bench-bar-row">
-          <span class="bench-bar-label">source-dive</span>
-          <div class="bench-bar-track"><div class="bench-bar-fill" style="--w: 65.0%"></div></div>
-          <span class="bench-bar-value">+45.5</span>
-        </div>
-        <div class="bench-bar-row">
-          <span class="bench-bar-label">survey</span>
-          <div class="bench-bar-track"><div class="bench-bar-fill" style="--w: 61.7%"></div></div>
-          <span class="bench-bar-value">+43.2</span>
-        </div>
-        <div class="bench-bar-row">
-          <span class="bench-bar-label">deep-read</span>
-          <div class="bench-bar-track"><div class="bench-bar-fill" style="--w: 34.7%"></div></div>
-          <span class="bench-bar-value">+24.3</span>
-        </div>
-        <div class="bench-bar-row">
-          <span class="bench-bar-label">forge</span>
-          <div class="bench-bar-track"><div class="bench-bar-fill" style="--w: 24.4%"></div></div>
-          <span class="bench-bar-value">+17.1</span>
+        <div class="bench-summary">
+          <p lang="zh-CN">带技能 <strong>98.1%</strong>，基线 57.0%，平均提升 <strong>+41.1</strong></p>
+          <p class="text-en" lang="en">With skill <strong>98.1%</strong> · Baseline 57.0% · Average delta <strong>+41.1</strong></p>
         </div>
       </div>
-    </section>
+    </div>
 
     <!-- Install -->
-    <section class="section install" aria-labelledby="install-heading" data-reveal="left">
+    <section class="section install" id="install" aria-labelledby="install-heading" data-reveal="left">
       <h2 id="install-heading" class="section-label">安装 / Install</h2>
       <pre><code>claude install-skill https://github.com/KKenny0/loom-skills</code><span class="copy-toast">Copied!</span></pre>
       <p class="install-note" lang="zh-CN">单个 skill 安装请参阅 <a href="https://github.com/KKenny0/loom-skills">README</a></p>
@@ -643,7 +699,17 @@
   </footer>
 
   <script>
-    // 1. Section scroll reveals
+    // 1. Nav scroll state
+    const topnav = document.getElementById('topnav');
+    if (topnav) {
+      const updateNav = () => {
+        topnav.classList.toggle('scrolled', window.scrollY > 20);
+      };
+      window.addEventListener('scroll', updateNav, { passive: true });
+      updateNav();
+    }
+
+    // 2. Section scroll reveals
     const revealEls = document.querySelectorAll('[data-reveal]');
     const staggerEls = document.querySelectorAll('[data-reveal-stagger]');
 
@@ -680,7 +746,7 @@
       staggerEls.forEach((el) => el.classList.add('stagger-visible'));
     }
 
-    // 2. Skill row expand/collapse
+    // 3. Skill row expand/collapse
     document.querySelectorAll('.skill-row').forEach((row) => {
       const toggle = () => {
         const wasActive = row.classList.contains('active');
@@ -704,7 +770,7 @@
       });
     });
 
-    // 3. Copy to clipboard
+    // 4. Copy to clipboard
     const preBlock = document.querySelector('.install pre');
     if (preBlock) {
       preBlock.addEventListener('click', async () => {
@@ -721,13 +787,12 @@
       });
     }
 
-    // 4. Benchmark bar animation (existing)
+    // 5. Benchmark bar animation
     const bars = document.querySelectorAll('.bench-bar-fill');
     if (bars.length && 'IntersectionObserver' in window) {
       const barObs = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Stagger bars
             const row = entry.target.closest('.bench-bar-row');
             const allRows = Array.from(document.querySelectorAll('.bench-bar-row'));
             const idx = allRows.indexOf(row);
