@@ -8,6 +8,10 @@
   <a href="README.en.md">English</a>
 </p>
 
+> **已归档（2026-07-13）**：Loom 不再作为当前维护入口。新的研究主干已迁移到 [KKenny0/weave](https://github.com/KKenny0/weave)，请安装和使用 weave。
+>
+> `deep-read`、`source-dive`、`survey` 已在 weave 统一；`debate`、`excavate`、`forge` 和 `loom-maintain` 保留在本仓库供历史查阅，不再承诺后续维护。
+
 ## Why
 
 让 AI 聊天机器人研究一个主题写篇文章——它会给你一个流畅、自信的答案。但真正的研究不流畅。来源之间有分歧，证据质量参差不齐，有些判断下面只是薄薄一层冰。AI 把它知道的东西平均了一下。分歧被抹平，弱主张听起来和强证据一样笃定。你得到一篇读起来很顺的文章，却看不出哪里地基是实的、哪里是虚的。
@@ -34,7 +38,7 @@ Loom 不适合这些场景：
 ```
 研究层（素材 → 完整文章，各自独立可用）:
   deep-read       论文、文章、报告 → 研究文章           [本 repo]
-  source-dive     技术源码 → 深度分析文章              [KKenny0/source-dive]
+  source-dive     技术源码 → 深度分析文章              [KKenny0/weave]
   survey          领域名/方向 → 结构化领域地图           [本 repo]
 
 思辨镜头（对 Loom 产物或原始输入施加思考）:
@@ -97,17 +101,15 @@ designing the right boundary between model reasoning and tool execution.
 ```
 </details>
 
-## 安装
+## 安装（已归档）
+
+新的研究工作流请使用 weave：
 
 ```bash
-# 安装全部 skills
-npx skills add KKenny0/loom-skills -a claude-code -g -y
-
-# 单独安装某个 skill
-npx skills add KKenny0/loom-skills --skill deep-read -a claude-code -g -y
+git clone https://github.com/KKenny0/weave.git ~/.claude/skills/weave
 ```
 
-本地开发时，把 `deep-read`、`survey`、`excavate`、`debate`、`forge` 和 `loom-maintain` 目录复制到 skills 目录。
+本仓库只保留 Loom 的历史实现。旧 skill 可以继续从本仓库阅读或 fork，但不会再获得维护更新。
 
 ## 快速开始
 

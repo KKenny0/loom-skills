@@ -8,6 +8,10 @@
   <a href="README.md">中文</a>
 </p>
 
+> **Archived (2026-07-13):** Loom is no longer the maintained entry point. The research core has moved to [KKenny0/weave](https://github.com/KKenny0/weave); install and use weave for new work.
+>
+> `deep-read`, `source-dive`, and `survey` are unified in weave. `debate`, `excavate`, `forge`, and `loom-maintain` remain here for historical reference only and are no longer maintained.
+
 ## Why
 
 Ask an AI chatbot to research a topic and write an article. It'll give you a smooth, confident answer. But real research isn't smooth — sources disagree, evidence varies in quality, some claims are built on thin ice. The AI averages what it knows. Disagreements get smoothed. Weak claims sound as solid as strong ones. You get an article that reads well but you can't tell where the ground is firm and where it isn't.
@@ -34,7 +38,7 @@ Three research skills, three thinking lenses, one vault tool. Each skill is stan
 ```
 Research layer (sources → complete article, each standalone):
   deep-read       Papers, articles, reports → research article    [this repo]
-  source-dive     Technical source code → deep analysis article   [KKenny0/source-dive]
+  source-dive     Technical source code → deep analysis article   [KKenny0/weave]
   survey          Domain name/direction → structured domain map   [this repo]
 
 Thinking lenses (apply to any Loom artifact or raw input):
@@ -97,17 +101,15 @@ designing the right boundary between model reasoning and tool execution.
 ```
 </details>
 
-## Install
+## Install (archived)
+
+Use weave for new research work:
 
 ```bash
-# Install all skills
-npx skills add KKenny0/loom-skills -a claude-code -g -y
-
-# Install a single skill
-npx skills add KKenny0/loom-skills --skill deep-read -a claude-code -g -y
+git clone https://github.com/KKenny0/weave.git ~/.claude/skills/weave
 ```
 
-For local development, copy `deep-read`, `survey`, `excavate`, `debate`, `forge`, and `loom-maintain` directories into your skills directory.
+This repository preserves Loom's historical implementation. You can still read or fork the old skills, but they are no longer maintained.
 
 ## Quick Start
 
